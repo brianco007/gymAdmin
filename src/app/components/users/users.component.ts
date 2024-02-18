@@ -35,7 +35,7 @@ export class UsersComponent {
   
   // Show users
   users: any[] = [];
-  otherUsers: any[] = [];
+  contentToShow: any[] = [];
   showAllUsers() {
     this.gymUsersService.getUsers().subscribe((res: any) => {
       this.users = res.reverse();
@@ -50,10 +50,11 @@ export class UsersComponent {
         const owner = jwtHelperService.decodeToken(tokenFromDom).id;
         return user.createdBy === owner
       })
+      this.contentToShow = filteredData
       this.users = filteredData
 
       //format date 01/02/2024 for 01-Feb-2024
-      this.users.forEach((obj) => {
+      this.contentToShow.forEach((obj) => {
         const months = [
           'Ene',
           'Feb',
@@ -107,6 +108,7 @@ export class UsersComponent {
       if (a.fullName > b.fullName) return 1;
       return 0;
     });
+    this.contentToShow = sortedNames
   }
 
   zToA() {
@@ -115,19 +117,24 @@ export class UsersComponent {
       if (a.fullName < b.fullName) return 1;
       return 0;
     });
+    this.contentToShow = sortedNames
   }
 
   selectedMonth: string = ''
   byMonth(){
-    let data = this.users
-    data = data.filter(user=> user.dateStart.slice(3, 6) === this.selectedMonth)
-    this.users = data
+    const filteredData = this.users.filter(user=> user.dateStart.slice(3, 6) === this.selectedMonth)
+    this.contentToShow = filteredData;
   }
 
   wantedId: string = '';
   byUserId(){
-    const data = this.users.filter(user => user.idNumber === this.wantedId)
-    this.users = data
-    this.wantedId = ''
+    const sortedData = this.users.filter(user => user.idNumber === this.wantedId)
+    this.contentToShow = sortedData
+  }
+
+  nameOrLastName: string = '';
+  byNameLastname(){
+    const sortedData = this.users.filter(user => user.fullName.toLowerCase().indexOf(this.nameOrLastName.toLowerCase()) > -1)
+    this.contentToShow = sortedData;
   }
 }

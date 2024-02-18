@@ -10,7 +10,7 @@
   <table class="text-light text-center mt-3 position-relative">
     <!-- total users -->
     <span class="totalUsers text-light border-dark position-absolute">
-      Total de Usuarios: {{ users.length }}
+      Total de Usuarios: {{ contentToShow.length }}
     </span>
 
     <tr class="table-titles text-light">
@@ -19,7 +19,7 @@
       <th class="p-1 rounded">Acciones</th>
     </tr>
 
-    @for(user of users; track user._id){
+    @for(user of contentToShow; track user._id){
     <tr class="data text-dark border border-dark">
       <td class="border border-dark p-1">{{ user.fullName }}</td>
       <td class="border border-dark p-1">{{ user.dateStart }}</td>
@@ -48,23 +48,32 @@
     class="az-btn position-absolute d-flex flex-column align-items-center gap-1 rounded p-3 z-3 filters"
   >
     <h4 class="text-light">Filtros</h4>
+
+    <!-- Show all filter -->
     <span class="btn btn-danger" (click)="showAllUsers()" title="Resetear"
       >Todos</span
     >
-    <span
-      class="btn btn-danger"
-      (click)="aToZ()"
-      title="Organizar de la A a la Z"
-      >A-Z</span
-    >
-    <span
-      class="btn btn-danger"
-      (click)="zToA()"
-      title="Organizar de la Z a la A"
-      >Z-A</span
-    >
+
+    <!-- AZ - ZA filters -->
+    <div class="d-flex gap-2">
+
+      <span
+        class="btn btn-danger"
+        (click)="aToZ()"
+        title="Organizar de la A a la Z"
+        >A-Z</span
+      >
+      <span
+        class="btn btn-danger"
+        (click)="zToA()"
+        title="Organizar de la Z a la A"
+        >Z-A</span
+      >
+    </div>
+
+    <!-- Months filter -->
     <label class="text-light">Mes</label>
-    <select [(ngModel)]="selectedMonth" (click)="showAllUsers()">
+    <select [(ngModel)]="selectedMonth">
       <option disabled>Escoja un mes</option>
       <option value="Ene">Enero</option>
       <option value="Feb">Febrero</option>
@@ -86,14 +95,25 @@
       >Buscar</span
     >
 
-    <label class="text-light">N° de Identificación</label>
+    <!-- ID Number filter -->
+    <label class="text-light" for="cc">N° de Identificación</label>
     <input
+      id="cc"
       type="text"
       placeholder="CC o TI"
       [(ngModel)]="wantedId"
-      (click)="showAllUsers()"
     />
     <button class="btn btn-danger" (click)="byUserId()">Buscar</button>
+
+    <!-- By Name filter -->
+    <label class="text-light" for="names">Nombre</label>
+    <input
+      id="names"
+      type="text"
+      placeholder="CC o TI"
+      [(ngModel)]="nameOrLastName"
+      (keyup)="byNameLastname()"
+    />
   </div>
 
 </main>

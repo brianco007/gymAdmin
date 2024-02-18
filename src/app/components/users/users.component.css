@@ -4,7 +4,7 @@
   width: 100%;
   background: linear-gradient(to right, #0f202789, #203a438f, #2c536499), url('../../../assets/actions.jpg');
   background-size: cover;
-  min-height: 100vh;
+  min-height: 110vh;
 }
 
 .az-btn{
@@ -54,4 +54,8 @@
 
 table{
   box-shadow: 0 0 50px rgba(0, 0, 0, .7);
+}
+
+input{
+  outline: none;
 }
