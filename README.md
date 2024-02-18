@@ -26,9 +26,12 @@
 4. Run `ng serve`
 
 ## How to use it?
-Once the web-application is up and running, you can either go to the **Sign up** section and create an account for yourself and test it with your own credentials or you can use the ones we provide below. 
-**Email:** mmusclemania@gmail.com 
-**Password:** mmusclemania  
+Once the web-application is up and running, you can either go to the **Sign up** section and create an account for yourself and test it with your own credentials or you can use the ones we provide below.  
+**Email:** musclemania@gmail.com  
+**Password:** musclemania  
+
+**Testing the Clients section**  
+You can use **1085313559** to see what a client see in this interface.
 
 
 
