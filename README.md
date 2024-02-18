@@ -24,3 +24,11 @@
 2. Install all dependecies. See **package.json** file
 3. Navigate to **test-app** directory
 4. Run `ng serve`
+
+## How to use it?
+Once the web-application is up and running, you can either go to the **Sign up** section and create an account for yourself and test it with your own credentials or you can use the ones we provide below. 
+**Email:** mmusclemania@gmail.com 
+**Password:** mmusclemania  
+
+
+
