@@ -1,0 +1,27 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-clients{
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  background: linear-gradient(to top, #222222cf, #22222241) , url('../../../assets/clients.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  
+}
+
+input{
+  outline: none;
+}
+
+.userData{
+  box-shadow: 0 0 50px rgba(0, 0, 0, .7);
+  background: linear-gradient(to bottom, #222222cf, #b2a3a341)
+}

@@ -1,0 +1,322 @@
+<main
+  class="main-store d-flex flex-column justify-content-center align-items-center text-light py-5 px-2 position-relative"
+>
+  <!-- title -->
+  <h2 class="mt-4">{{ gymName }}</h2>
+  <h6> {{ grandTotal }}</h6>
+
+  <!-- CREATE Button trigger modal -->
+  <button
+    type="button"
+    class="btn btn-success mb-2"
+    data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop"
+  >
+    Agregar
+    <i class="bi bi-plus-circle-fill "></i>
+  </button>
+  <!-- CREATE Modal -->
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered text-dark">
+      <div class="modal-content modal-bg">
+        <div class="modal-header">
+          <h5 class="modal-title text-light" id="staticBackdropLabel">
+            Agregar nueva venta.
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body d-flex flex-column gap-2">
+          <input
+            type="text"
+            placeholder="¿Qué vendió?"
+            [(ngModel)]="productData.concept"
+            class="p-1"
+          />
+          <input
+            type="number"
+            placeholder="Precio"
+            [(ngModel)]="productData.value"
+            class="p-1"
+          />
+          <input
+            type="number"
+            placeholder="Cantidad"
+            value="1"
+            [(ngModel)]="productData.quantity"
+            class="p-1"
+          />
+          <textarea
+            cols="5"
+            rows="2"
+            placeholder="Observaciones"
+            [(ngModel)]="productData.notes"
+            class="p-1"
+          ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <a
+            type="button"
+            class="btn btn-success"
+            (click)="addNewProduct()"
+            href="/store"
+            >Agregar</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- charts -->
+  <table class="text-dark px-3">
+    <tr class="table-title text-light">
+      <th class="p-1 text-center rounded">Concepto</th>
+      <th class="p-1 text-center">Cantidad</th>
+      <th class="p-1 text-center">Total</th>
+      <th class="p-1 text-center rounded">Acciones</th>
+    </tr>
+    @for(product of contentToShow; track product._id){
+    <tr class="data">
+      <td class=" p-1 border border-dark text-center">
+        {{ product.concept }}
+      </td>
+      <td class=" p-1 border border-dark text-center">
+        {{ product.quantity }}
+      </td>
+      <td class=" p-1 border border-dark text-end">
+        {{currency(product.value * product.quantity)  }}
+      </td>
+
+      <td class="p-sm-1 border border-dark">
+        <!-- DETAILS btn -->
+          <i
+            title="Ver detalles"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#detailsBtn"
+            class=" bi bi-plus-circle-fill icon1"
+            (click)="getOneProduct(product._id)"
+          ></i>
+        <!-- DETAILS Modal -->
+        <div
+          class="modal fade"
+          id="detailsBtn"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered text-light">
+            <div class="modal-content modal-bg">
+              <div class="modal-header ">
+                <h5 class="modal-title text-light" id="staticBackdropLabel">
+                  Detalles
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close light"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body d-flex flex-column">
+                <p class="text-transform-uppercase">
+                  <strong>Concepto: </strong> {{ productDetails.concept }}
+                </p>
+                <p><strong>Valor U.: </strong> {{ currency(productDetails.value) }}</p>
+                <p><strong>Cantidad: </strong> {{ productDetails.quantity }}</p>
+                <p>
+                  <strong>Total </strong> {{ currency(productDetails.value * productDetails.quantity) }}
+                </p>
+                <p>
+                  <strong>Fecha: </strong> {{ productDetails.createdAt.slice(0, 10) }}
+                </p>
+                <p><strong>Observaciones: </strong> {{ productDetails.notes }}</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  data-bs-dismiss="modal"
+                >
+                  Volver
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDIT btn -->
+          <i
+            class="bi bi-pen-fill icon2 mx-2"
+            title="Editar"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#editBtn"
+            (click)="getOneProduct(product._id)"
+          >
+          </i>
+        <!-- Edit Modal -->
+        <div
+          class="modal fade"
+          id="editBtn"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered text-dark">
+            <div class="modal-content modal-bg">
+              <div class="modal-header">
+                <h5 class="modal-title text-light" id="staticBackdropLabel">
+                  Editar Producto
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body d-flex flex-column gap-2">
+                <input
+                  type="text"
+                  placeholder="¿Qué vendió?"
+                  [(ngModel)]="previousData.concept"
+                  class="p-1"
+                />
+                <input
+                  type="number"
+                  placeholder="Precio"
+                  [(ngModel)]="previousData.value"
+                  class="p-1"
+                />
+                <input
+                  type="number"
+                  placeholder="Cantidad"
+                  [(ngModel)]="previousData.quantity"
+                  class="p-1"
+                />
+                <textarea
+                  cols="5"
+                  rows="2"
+                  placeholder="Observaciones"
+                  [(ngModel)]="previousData.notes"
+                  class="p-1"
+                ></textarea>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancelar
+                </button>
+                <a type="button" class="btn btn-success" href="/store" (click)="editProduct(editID)"
+                  >Editar</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DELETE btn -->
+        <i
+          class="bi bi-x-circle-fill icon3"
+          title="Eliminar"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteBtn"
+          (click)="getOneProduct(product._id)"
+        ></i>
+        <!-- DELETE modal -->
+        <div
+          class="modal fade"
+          id="deleteBtn"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered text-dark">
+            <div class="modal-content modal-bg">
+              <div class="modal-header">
+                <h5 class="modal-title text-light" id="staticBackdropLabel">
+                  Eliminar registro.
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close light"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body d-flex flex-column text-light">
+                ¿De verdad quieres eliminar este producto de tu lista?
+                <span class="text-danger"> {{ productName }} </span>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Volver
+                </button>
+                <a
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="deleteProduct(productID)"
+                  href="/store"
+                >
+                  Eliminar
+              </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </td>
+    </tr>
+    }
+  </table>
+
+  <!-- FILTERS -->
+  <div class="filters p-3 position-absolute d-flex flex-column gap-1 text-dark text-center rounded">
+    <h4 class="text-light">Filtros</h4>
+    <button class="btn btn-success" (click)="today()" > Hoy </button>
+    <button class="btn btn-success" (click)="yesterday()"> Ayer </button>
+    <button class="btn btn-success " (click)="lastWeek()"> Última Semana </button>
+    <button class="btn btn-success" (click)="lastMonth()"> Último Mes </button>
+    <small class="text-light">Escoja un día</small>
+    <input 
+      type="date"
+      [(ngModel)] = "myDate"
+    />
+    <button class="btn btn-success" (click)="chooseDate()">Buscar</button>
+  </div>
+</main>
+

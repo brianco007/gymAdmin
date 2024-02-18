@@ -1,0 +1,55 @@
+<main
+  class="main-clients d-flex flex-column align-items-center justify-content-center px-3 text-light"
+>
+  <h1 class="text-danger">Clientes</h1>
+  <p class="text-center">
+    Conozca los detalles de su mensualidad con un click.
+  </p>
+  <form
+    [formGroup]="clientForm"
+    (ngSubmit)="getAllUsers()"
+    class="d-flex align-items-center"
+  >
+    <input
+      type="search"
+      placeholder="Número de CC o TI"
+      class="mt-2 p-2"
+      formControlName="userId"
+    />
+    <button class="btn btn-danger mt-2 p-2" (click)="getAllUsers()">
+      Buscar
+    </button>
+  </form>
+
+  <small> {{ message }} </small>
+
+  @for(data of allUsers; track data._id){
+  <section
+    class="userData rounded text-dark p-3 d-flex flex-column mt-3"
+  >
+    <h6 class="text-center text-danger">Tu Gimnasio</h6>
+    <p class="text-light"><span class="text-danger">Nombre: </span> {{ dataFromGym?.gymName }}</p>
+    <hr />
+
+    <h6 class="text-center text-danger">Tus datos</h6>
+    <p class="text-light"><span class="text-danger">Nombre: </span> {{ data.fullName }}</p>
+    @if(data.phone){
+    <p class="text-light"><span class="text-danger">Celular: </span> {{ data.phone }}</p>
+    } @if(data.phone){
+    <p class="text-light"><span class="text-danger">Correo: </span> {{ data.email }}</p>
+    }
+
+    <hr />
+    <h6 class="text-center text-danger">Tu mensualidad</h6>
+    <p class="text-light"><span class="text-danger">Inicia: </span> {{ start }}</p>
+    <p class="text-light"><span class="text-danger">Expira: </span> {{ end }}</p>
+    @if(daysLeft < 0){
+    <p class="text-light">
+      <span class="text-danger">Expiró hace: </span>{{ daysLeft * -1 }} días.
+    </p>
+    } @else {
+    <p class="text-light"><span class="text-danger">Tienes: </span>{{ daysLeft }} días</p>
+    }
+  </section>
+  }
+</main>

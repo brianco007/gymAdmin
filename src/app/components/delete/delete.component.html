@@ -1,0 +1,8 @@
+<main class="main-delete d-flex align-items-center justify-content-center px-3">
+  <section class="delete-modal text-dark text-center p-3 rounded">
+    <h1 class="text-danger"> Eliminar Usuario </h1>
+    <h3> ¿De verdad quieres eliminar a {{userInfo?.fullName}}? </h3>
+    <button class="btn btn-secondary mx-1" routerLink="/users">No, regresar</button>
+    <a class="btn btn-danger mx-1" (click)="handleDelete(userInfo?._id)" href="/users">Sí, eliminar </a>
+  </section>
+</main>

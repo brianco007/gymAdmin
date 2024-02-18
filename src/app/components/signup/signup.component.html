@@ -1,0 +1,29 @@
+<main class="main-signup d-flex flex-column align-items-center justify-content-center px-3">
+  <h1 class="text-danger">Registrarse</h1>
+
+  <section class="d-flex flex-column text-light w-100">
+
+    <label>Nombre del Gym</label>
+    <input 
+      type="text" 
+      class="p-2 border rounded" 
+      [(ngModel)]="signupModel.gymName"
+    >
+
+    <label>Correo electrónico</label>
+    <input 
+      type="email" 
+      class="p-2 border rounded" 
+      [(ngModel)]="signupModel.email"
+    >
+
+    <label>Contraseña</label>
+    <input 
+      type="password" 
+      class="p-2 border rounded"
+      [(ngModel)]="signupModel.password"
+    >
+
+    <button class="btn btn-danger mt-3" [disabled]="!signupModel.email || !signupModel.gymName || !signupModel.password" (click)="handleSubmit()">Registrarse</button>
+  </section>
+</main>

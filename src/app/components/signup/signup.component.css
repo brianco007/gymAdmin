@@ -1,0 +1,15 @@
+.main-signup{
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  background: linear-gradient(to top, #222222, #2222226d) , url('../../../assets/group.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+
+.main-signup section{
+  max-width: 300px;
+}

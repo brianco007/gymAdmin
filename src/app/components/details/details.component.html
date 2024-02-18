@@ -1,0 +1,37 @@
+<main class="main-details d-flex align-items-center justify-content-center text-light gap-4 flex-column p-3">
+
+  <!-- back button -->
+  <button class="btn btn-danger d-flex align-items-center gap-2" routerLink="/users"><i class="bi bi-arrow-left-circle-fill fs-6"></i>Regresar</button>
+
+  <section>
+    <table >
+      <tr class="user-name">
+        <th class="p-2 px-5 text-center fs-5 rounded">{{ userInfo?.fullName }}</th>
+      </tr>
+
+      <tr class="data text-dark d-flex border">
+        <td class="fs-6 p-2"> <i class="bi bi-fingerprint"></i> {{ userInfo?.idNumber }} </td>
+      </tr>
+      <tr class="data text-dark d-flex border">
+        <td class="fs-6 p-2"> <i class="bi bi-telephone"></i> {{ userInfo?.phone }} </td>
+      </tr>
+      <tr class="data text-dark d-flex border">
+        <td class="fs-6 p-2"><i class="bi bi-envelope"></i> {{ userInfo?.email }} </td>
+      </tr>
+      <tr class="data text-dark d-flex border">
+        <td class="fs-6 p-2"><i class="bi bi-calendar-check"></i> {{ dateStart }} </td>
+      </tr>
+      <tr class="data text-dark d-flex border">
+        <td class="fs-6 p-2"><i class="bi bi-calendar-x"></i> {{ dateEnd }} </td>
+      </tr>
+      <tr [className]="daysLeftColor(daysLeft)">
+        <td class="fs-6 p-2" > @if(daysLeft <= 0){
+          Expiró hace {{ daysLeft*-1 }} 
+        }  @else {
+          Tiene {{ daysLeft }} 
+        } días</td>
+      </tr>
+    </table>
+  </section>
+
+</main>

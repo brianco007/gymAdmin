@@ -1,0 +1,20 @@
+.main-login{
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  background: linear-gradient(to top, #222222cf, #22222241) , url('../../../assets/ropes.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+
+.main-login section{
+  
+  max-width: 300px;
+}
+
+.clickHere{
+  cursor: pointer;
+}

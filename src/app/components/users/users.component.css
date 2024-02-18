@@ -1,0 +1,57 @@
+.main-users{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(to right, #0f202789, #203a438f, #2c536499), url('../../../assets/actions.jpg');
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.az-btn{
+  top: 30%;
+  left: 0;
+  transform: translateX(-93%);
+  transition: all .4s ease;
+  background: linear-gradient(to top, #222222, #222222ed);
+  box-shadow: 0 0 50px rgba(0, 0, 0, .7);
+}
+.az-btn:hover{
+  transform: translateX(0);
+}
+
+.totalUsers{
+  top: -20px;
+  left: 0;
+  font-size: .7rem;
+}
+
+.navbar{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+}
+
+.table-titles{
+  background: linear-gradient(to top, #222222cf, #22222241)
+}
+
+.data{
+  background: linear-gradient(to left, #ece9e6, #fffffff6);
+}
+
+.icon1{
+  color: rgb(72, 120, 55);
+}
+
+.icon2{
+  color: rgb(79, 98, 160);
+}
+
+.icon3{
+  color: rgb(198, 66, 66);
+}
+
+table{
+  box-shadow: 0 0 50px rgba(0, 0, 0, .7);
+}
