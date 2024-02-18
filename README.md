@@ -1,5 +1,5 @@
 # NextGym 🏋️💪
-![Alt text](/test-app/src/assets/actions.jpg "Optional title")
+![OpenAI Logo](https://openai.com/favicon.ico)
 
 ## Description
 **NextGym** offers gym administrators the possibility to keep track of their clients memberships and info in a user-friendly interface. Also, it helps them manage their profits and gym store sales.
