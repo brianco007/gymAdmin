@@ -18,4 +18,6 @@
 ## Getting started
 **Pre-requisites**
 * Node 
-npm install
+
+This Markdown code will create a block with the instruction "Copy and paste the following command to install dependencies:", followed by the command `npm install` inside a code block. Users can easily copy this command.
+
