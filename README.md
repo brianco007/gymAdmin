@@ -1,4 +1,5 @@
 # NextGym 🏋️💪
+![Alt text](/test-app/src/assets/actions.jpg "Optional title")
 
 ## Description
 **NextGym** offers gym administrators the possibility to keep track of their clients memberships and info in a user-friendly interface. Also, it helps them manage their profits and gym store sales.
@@ -16,7 +17,7 @@
 * **Node.js**: JavaScript runtime
 
 ## Getting started
-**Pre-requisites**
+**Pre-requisites**  
 `npm install`
 `npm install -g @angular/cli`
 
@@ -31,7 +32,10 @@ Once the web-application is up and running, you can either go to the **Sign up**
 **Password:** musclemania  
 
 **Testing the Clients section**  
-You can use **1085313559** to see what a client see in this interface.
+You can use **1085313559** to see what a client will see in this interface.
+
+## Created by
+Created with love by [Brian Córdoba](https://github.com/brianco007)
 
 
 
