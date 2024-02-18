@@ -10,4 +10,12 @@
 - Modern design
 
 ## Technologies
-<div style:"background-color: #f0db4f" > Angular </div>
+* **MongoDB**: NoSQL database
+* **Express.js**: Web application framework
+* **Angular**: JavaScript library
+* **Node.js**: JavaScript runtime
+
+## Getting started
+**Pre-requisites**
+* Node 
+npm install
