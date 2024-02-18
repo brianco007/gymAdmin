@@ -17,7 +17,10 @@
 
 ## Getting started
 **Pre-requisites**
-* Node 
+`npm install`
+`npm install -g @angular/cli`
 
-This Markdown code will create a block with the instruction "Copy and paste the following command to install dependencies:", followed by the command `npm install` inside a code block. Users can easily copy this command.
-
+1. Clone the repository https://github.com/brianco007/gymAdmin.git
+2. Install all dependecies. See **package.json** file
+3. Navigate to **test-app** directory
+4. Run `ng serve`
