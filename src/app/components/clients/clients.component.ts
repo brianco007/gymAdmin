@@ -21,7 +21,9 @@ export class ClientsComponent {
   end: string = '';
   daysLeft: number = 0;
   gymId: string = '';
-  message: string = '';
+
+  foundInMembers: boolean = true;
+  foundInTickets: boolean = true;
 
 
   //handle form Data
@@ -34,16 +36,15 @@ export class ClientsComponent {
     this.gymService.getUsers().subscribe((res: any)=>{
       const userId = this.clientForm.value.userId; // get value form FORM
       const sortedData = res.filter((user: any) => user.idNumber === userId)
-      this.allUsers = sortedData
+      this.allUsers = sortedData;
       if(this.allUsers.length){
         this.start = this.calculateExpiryDate(this.allUsers[0].dateStart).start;
         this.end = this.calculateExpiryDate(this.allUsers[0].dateStart).end;
         this.daysLeft = this.calculateExpiryDate(this.allUsers[0].dateStart).daysLeft;
         this.gymId = this.allUsers[0].createdBy;
-        this.showGymName()
-        this.message = '';
+        this.foundInMembers = true;
       } else {
-        this.message = 'No se encontró ningún registro.';
+        this.foundInMembers = false;     
       }
     })
   }
@@ -92,16 +93,15 @@ export class ClientsComponent {
       const userId = this.clientForm.value.userId; // get value form FORM
       const filteredData = res.filter((user: any) => user.userId === userId)
       this.ticketInfo = filteredData
-      
-      if(this.ticketInfo.length){
-        
-        this.message = ''
+
+      if(this.ticketInfo.length){       
         this.gymId = this.ticketInfo[0].createdBy;
         this.showGymName()
-      } 
-      
+        this.foundInTickets = true;
 
-
+      } else {
+        this.foundInTickets = false;
+      }
     })
   }
 
@@ -109,5 +109,14 @@ export class ClientsComponent {
     this.getAllUsers()
     this.getAllTickets()
   }
+
+  activateMessage(yesNo: boolean){
+    if(yesNo){
+      return 'No se encontró ningún registro.'
+    } else {
+      return ''
+    }
+  }
+  
 
 }

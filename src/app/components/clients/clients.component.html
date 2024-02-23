@@ -19,7 +19,10 @@
     <button class="btn btn-danger mt-2 p-2">Buscar</button>
   </form>
 
-  <small> {{ message }} </small>
+  @if(!foundInMembers && !foundInTickets){
+    <small> No se encontró ningún registro. </small>
+  }
+  
 
   <!-- MEMBERSHIPS -->
   @for(data of allUsers; track data._id){
