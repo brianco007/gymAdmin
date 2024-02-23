@@ -18,21 +18,21 @@ export class UsersComponent {
   gymUsersService = inject(GymUsersService);
   loginService = inject(LoginServiceService);
   gymName: string = '';
-
-  // // show date
-  // todaysDate: any = this.showDate()
-  // showDate(){
-  //   const daysArr = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-  //   const monthsArr = [
-  //     'Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dec'];
-  //   const today = new Date();
-  //   const day =  daysArr[today.getDay()-1];
-  //   const month =  monthsArr[today.getMonth()];
-  //   const date = today.getDate()
-  //   const fullDate = `- ${day}, ${date} de ${month}`
-  //   return fullDate
-  // }
-  
+  months: string[] = [
+    'Ene',
+    'Feb',
+    'Mar',
+    'Abr',
+    'May',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ]
+ 
   // Show users
   users: any[] = [];
   contentToShow: any[] = [];
@@ -53,33 +53,30 @@ export class UsersComponent {
       this.contentToShow = filteredData
       this.users = filteredData
 
+
       //format date 01/02/2024 for 01-Feb-2024
       this.contentToShow.forEach((obj) => {
-        const months = [
-          'Ene',
-          'Feb',
-          'Mar',
-          'Abr',
-          'May',
-          'Jun',
-          'Jul',
-          'Ago',
-          'Sep',
-          'Oct',
-          'Nov',
-          'Dec',
-        ];
-
+  
         obj.dateStart = new Date(obj.dateStart);
         obj.dateStart = obj.dateStart.getTime() + 1 * 24 * 60 * 60 * 1000;
         obj.dateStart = new Date(obj.dateStart);
         obj.dateStart =
           ('0' + obj.dateStart.getDate()).slice(-2) +
           ' ' +
-          months[obj.dateStart.getMonth()] +
+          this.months[obj.dateStart.getMonth()] +
           ', ' +
           obj.dateStart.getFullYear();
       });
+
+      // show only current month data
+      const currentMonthIndex = new Date().getMonth();
+      const currentMonth = this.months[currentMonthIndex];
+      const sortedByCurrentMonth = this.users.filter(user=>{
+        const date = user.dateStart;
+        const slicedDate = date.slice(2, 6).trim()
+        return slicedDate === currentMonth;
+      })
+      this.contentToShow = sortedByCurrentMonth;
     });
   }
   
@@ -134,6 +131,9 @@ export class UsersComponent {
 
   nameOrLastName: string = '';
   byNameLastname(){
+    if(!this.nameOrLastName){
+      this.showAllUsers()
+    }
     const sortedData = this.users.filter(user => user.fullName.toLowerCase().indexOf(this.nameOrLastName.toLowerCase()) > -1)
     this.contentToShow = sortedData;
   }

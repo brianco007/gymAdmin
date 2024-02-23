@@ -21,3 +21,7 @@
 table{
   box-shadow: 0 0 50px rgba(0, 0, 0, .7);
 }
+
+.user-name{
+  background: linear-gradient(to top, #222222cf, #22222241)
+}

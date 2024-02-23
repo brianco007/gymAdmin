@@ -11,6 +11,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { activateGuard } from './guards/activate.guard'; 
 import { StoreComponent } from './components/store/store.component';
 import { ClientsComponent } from './components/clients/clients.component';
+import { TicketsComponent } from './components/tickets/tickets.component';
 
 export const routes: Routes = [
   {
@@ -21,7 +22,12 @@ export const routes: Routes = [
   {
     path: "users",
     component: UsersComponent,
-    title: "NextGym | Usuarios",
+    title: "NextGym | Mensualidades",
+  },
+  {
+    path: "tickets",
+    component: TicketsComponent,
+    title: "NextGym | Tiqueteras",
     canActivate: [activateGuard]
   },
   {

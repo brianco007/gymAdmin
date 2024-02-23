@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { GymUsersService } from '../../services/gym-users.service'; 
+import { GymUsersService } from '../../services/gym-users.service';
+import { TicketsService } from '../../services/tickets-service';  
 import { ShowGymOwnersService } from '../../services/show-gym-owners.service'; 
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms'; 
 
@@ -28,10 +29,10 @@ export class ClientsComponent {
     userId: new FormControl(''),
   });
 
-
+  // GET Monthly membership users
   getAllUsers(){
     this.gymService.getUsers().subscribe((res: any)=>{
-      const userId = this.clientForm.value.userId;
+      const userId = this.clientForm.value.userId; // get value form FORM
       const sortedData = res.filter((user: any) => user.idNumber === userId)
       this.allUsers = sortedData
       if(this.allUsers.length){
@@ -82,7 +83,31 @@ export class ClientsComponent {
       daysLeft,
     }
   }
-  
-  
+
+  // GET tickets users
+  ticketService = inject(TicketsService);
+  ticketInfo: any = []
+  getAllTickets(){
+    this.ticketService.getTickets().subscribe((res: any)=>{
+      const userId = this.clientForm.value.userId; // get value form FORM
+      const filteredData = res.filter((user: any) => user.userId === userId)
+      this.ticketInfo = filteredData
+      
+      if(this.ticketInfo.length){
+        
+        this.message = ''
+        this.gymId = this.ticketInfo[0].createdBy;
+        this.showGymName()
+      } 
+      
+
+
+    })
+  }
+
+  handleSubmit(){
+    this.getAllUsers()
+    this.getAllTickets()
+  }
 
 }

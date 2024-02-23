@@ -26,7 +26,7 @@
       <td class="p-1">
         <a [routerLink]="'/details/' + user._id" class="text-decoration-none"
           ><i
-            class="bi bi-plus-circle-fill icon1"
+            class="bi bi-eye-fill icon1"
             title="See Details"
           ></i
         ></a>
@@ -51,7 +51,7 @@
 
     <!-- Show all filter -->
     <span class="btn btn-danger" (click)="showAllUsers()" title="Resetear"
-      >Todos</span
+      >Mes Actual</span
     >
 
     <!-- AZ - ZA filters -->
@@ -106,11 +106,11 @@
     <button class="btn btn-danger" (click)="byUserId()">Buscar</button>
 
     <!-- By Name filter -->
-    <label class="text-light" for="names">Nombre</label>
+    <label class="text-light" for="names">Nombre o Apellido</label>
     <input
       id="names"
       type="text"
-      placeholder="CC o TI"
+      placeholder="Juan Pérez"
       [(ngModel)]="nameOrLastName"
       (keyup)="byNameLastname()"
     />

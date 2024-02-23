@@ -1,0 +1,73 @@
+.main-tickets{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(to right, #0f202789, #203a438f, #2c536499), url('../../../assets/tickets.jpg');
+  background-size: cover;
+  min-height: 110vh;
+}
+
+.totalUsers{
+  top: -15px;
+  left: 0;
+  font-size: .7rem;
+}
+
+.table-titles{
+  background: linear-gradient(to top, #222222cf, #22222241)
+}
+
+.data{
+  background: linear-gradient(to left, #ece9e6, #fffffff6);
+}
+
+.icon1{
+  color: rgb(72, 120, 55);
+}
+
+.icon2{
+  color: rgb(79, 98, 160);
+}
+
+.icon3{
+  color: rgb(198, 66, 66);
+}
+
+.icon4{
+  color: rgb(205, 128, 34);
+}
+
+.removeDay{
+  border: none;
+}
+.removeDay:disabled{
+  filter:grayscale(100%);
+}
+
+table{
+  box-shadow: 0 0 50px rgba(0, 0, 0, .7);
+}
+
+
+.filters{
+  top: 20%;
+  left: 0;
+  transform: translateX(-93%);
+  transition: all .4s ease;
+  background: linear-gradient(to top, #222222, #222222ed);
+  box-shadow: 0 0 25px rgba(0, 0, 0, .7);
+  border: 2px dotted orange;
+}
+.filters:hover{
+  transform: translateX(0);
+}
+
+/* CREATE */
+.modal-bg{
+  background: linear-gradient(to top, #222222cf, #222222d4)
+}
+
+input{
+  outline: none;
+}
+

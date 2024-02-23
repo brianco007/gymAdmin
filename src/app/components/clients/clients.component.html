@@ -7,7 +7,7 @@
   </p>
   <form
     [formGroup]="clientForm"
-    (ngSubmit)="getAllUsers()"
+    (ngSubmit)="handleSubmit()"
     class="d-flex align-items-center"
   >
     <input
@@ -16,40 +16,87 @@
       class="mt-2 p-2"
       formControlName="userId"
     />
-    <button class="btn btn-danger mt-2 p-2" (click)="getAllUsers()">
-      Buscar
-    </button>
+    <button class="btn btn-danger mt-2 p-2">Buscar</button>
   </form>
 
   <small> {{ message }} </small>
 
+  <!-- MEMBERSHIPS -->
   @for(data of allUsers; track data._id){
-  <section
-    class="userData rounded text-dark p-3 d-flex flex-column mt-3"
-  >
+  <section class="userData rounded text-dark p-3 d-flex flex-column mt-3">
     <h6 class="text-center text-danger">Tu Gimnasio</h6>
-    <p class="text-light"><span class="text-danger">Nombre: </span> {{ dataFromGym?.gymName }}</p>
+    <p class="text-light">
+      <span class="text-danger">Nombre: </span> {{ dataFromGym?.gymName }}
+    </p>
     <hr />
 
-    <h6 class="text-center text-danger">Tus datos</h6>
-    <p class="text-light"><span class="text-danger">Nombre: </span> {{ data.fullName }}</p>
+    <h6 class="text-center text-danger">Tus Datos</h6>
+    <p class="text-light">
+      <span class="text-danger">Nombre: </span> {{ data.fullName }}
+    </p>
     @if(data.phone){
-    <p class="text-light"><span class="text-danger">Celular: </span> {{ data.phone }}</p>
+    <p class="text-light">
+      <span class="text-danger">Celular: </span> {{ data.phone }}
+    </p>
     } @if(data.phone){
-    <p class="text-light"><span class="text-danger">Correo: </span> {{ data.email }}</p>
+    <p class="text-light">
+      <span class="text-danger">Correo: </span> {{ data.email }}
+    </p>
     }
 
     <hr />
-    <h6 class="text-center text-danger">Tu mensualidad</h6>
-    <p class="text-light"><span class="text-danger">Inicia: </span> {{ start }}</p>
-    <p class="text-light"><span class="text-danger">Expira: </span> {{ end }}</p>
+
+    <h6 class="text-center text-danger">Tu Mensualidad</h6>
+    <p class="text-light">
+      <span class="text-danger">Inicia: </span> {{ start }}
+    </p>
+    <p class="text-light">
+      <span class="text-danger">Expira: </span> {{ end }}
+    </p>
     @if(daysLeft < 0){
     <p class="text-light">
       <span class="text-danger">Expiró hace: </span>{{ daysLeft * -1 }} días.
     </p>
     } @else {
-    <p class="text-light"><span class="text-danger">Tienes: </span>{{ daysLeft }} días</p>
+    <p class="text-light">
+      <span class="text-danger">Tienes: </span>{{ daysLeft }} días
+    </p>
     }
+  </section>
+  } @for(ticket of ticketInfo; track ticket._id){
+  <section class="userData rounded text-dark p-3 d-flex flex-column mt-3">
+    <h6 class="text-center text-danger">Tu Gimnasio</h6>
+    <p class="text-light">
+      <span class="text-danger">Nombre: </span> {{ dataFromGym?.gymName }}
+    </p>
+    <hr />
+
+    <h6 class="text-center text-danger">Tus Datos</h6>
+    <p class="text-light">
+      <span class="text-danger">Nombre: </span> {{ ticket.fullName }}
+    </p>
+    @if(ticket.phone){
+    <p class="text-light">
+      <span class="text-danger">Celular: </span> {{ ticket.phone }}
+    </p>
+    } @if(ticket.phone){
+    <p class="text-light">
+      <span class="text-danger">Correo: </span> {{ ticket.email }}
+    </p>
+    }
+    <hr />
+
+    <h6 class="text-center text-danger">Tu Tiquetera</h6>
+    <p class="text-light">
+      <span class="text-danger">Inicia: </span> {{ ticket.startDate }}
+    </p>
+    <p class="text-light">
+      <span class="text-danger">Expira: </span> {{ ticket.endDate }}
+    </p>
+    <p class="text-light">
+      <span class="text-danger">Días Disponibles: </span>{{ ticket.numberOfDays }} días.
+    </p>
+  
   </section>
   }
 </main>

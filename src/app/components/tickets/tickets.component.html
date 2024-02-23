@@ -1,0 +1,436 @@
+<main class="main-tickets d-flex align-items-center flex-column py-5 px-2">
+  <h2 class="text-light mt-4">{{ gymName }}</h2>
+
+  <!-- CREATE Button -->
+  <button
+    type="button"
+    class="btn btn-warning text-light"
+    data-bs-toggle="modal"
+    data-bs-target="#create"
+  >
+    Agregar
+    <i class="bi bi-plus-circle-fill text-light"></i>
+  </button>
+  <!-- CREATE Modal -->
+  <div
+    class="modal fade"
+    id="create"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-bg">
+        <div class="modal-header">
+          <h5 class="modal-title text-light" id="staticBackdropLabel">
+            Agregar Nuevo Registro
+          </h5>
+          <button
+            type="button"
+            class="btn-close bg-light"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body d-flex flex-column text-light">
+          <label for="fullName"> Nombre y Apellido </label>
+          <input
+            type="text"
+            placeholder="Obligatorio"
+            id="fullName"
+            [(ngModel)]="formData.fullName"
+          />
+
+          <label for="cc">N° de Identificación</label>
+          <input
+            type="text"
+            id="cc"
+            placeholder="Obligatorio"
+            [(ngModel)]="formData.userId"
+          />
+
+          <label for="inicio">Fecha de Inicio</label>
+          <input type="date" [(ngModel)]="formData.startDate" id="inicio" />
+
+          <label for="fin">Fecha de Caducidad</label>
+          <input type="date" [(ngModel)]="formData.endDate" id="fin" />
+
+          <label for="dias">Días Totales de Tiquetera</label>
+          <input
+            type="text"
+            id="dias"
+            placeholder="Obligatorio"
+            [(ngModel)]="formData.numberOfDays"
+          />
+
+          <label for="correo">Correo</label>
+          <input
+            type="text"
+            id="correo"
+            placeholder="ejemplo@info.co"
+            [(ngModel)]="formData.email"
+          />
+
+          <label for="celular">Celular</label>
+          <input
+            type="text"
+            id="celular"
+            placeholder="3173253124"
+            [(ngModel)]="formData.phone"
+          />
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning text-light"
+            (click)="addNewMember()"
+            data-bs-dismiss="modal"
+          >
+            Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOW USERS -->
+  <table class="text-light text-center mt-3 position-relative">
+    <!-- total users -->
+    <span class="totalUsers text-light border-dark position-absolute">
+      Total de Usuarios: {{ contentToShow.length }}
+    </span>
+
+    <tr class="table-titles text-light">
+      <th class="p-1 rounded">Nombre</th>
+      <th class="p-1">Días</th>
+      <th class="p-1 rounded">Acciones</th>
+    </tr>
+
+    @for(user of contentToShow; track user._id){
+    <tr class="data text-dark border border-dark">
+      <td class="border border-dark p-1">{{ user.fullName }}</td>
+      <td class="border border-dark p-1">{{ user.numberOfDays }}</td>
+
+      <!-- CRUD actions -->
+      <td class="p-1">
+        <!-- DETAILS Button -->
+        <i
+          class="bi bi-eye-fill icon1"
+          title="Ver detalles"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#detailsBtn"
+          (click)="seeDetails(user._id)"
+        ></i>
+        <!-- DETAILS Modal -->
+        <div
+          class="modal fade"
+          id="detailsBtn"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered text-light">
+            <div class="modal-content modal-bg">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Detalles</h5>
+                <button
+                  type="button"
+                  class="btn-close bg-light"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body text-start">
+                <p><strong>Nombre: </strong> {{ detailsInfo.fullName }}</p>
+                <p>
+                  <strong>Identificación: </strong> {{ detailsInfo.userId }}
+                </p>
+                <p>
+                  <strong>Fecha de inicio: </strong> {{ detailsInfo.startDate }}
+                </p>
+                <p>
+                  <strong>Fecha de expiración: </strong>
+                  {{ detailsInfo.endDate }}
+                </p>
+                <p>
+                  <strong>Días totales de tiquetera: </strong>
+                  {{ detailsInfo.numberOfDays }} días
+                </p>
+                @if(detailsInfo.phone){
+                <p><strong>Celular: </strong> {{ detailsInfo.phone }}</p>
+                } @if(detailsInfo.email){
+                <p><strong>Correo: </strong> {{ detailsInfo.email }}</p>
+                }
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-warning text-light"
+                  data-bs-dismiss="modal"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDIT Button -->
+        <i
+          class="bi bi-pen-fill icon2 mx-2"
+          title="Editar"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#editBtn"
+          (click)="seeDetails(user._id)"
+        >
+        </i>
+        <!-- EDIT Modal -->
+        <div
+          class="modal fade"
+          id="editBtn"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered text-light">
+            <div class="modal-content modal-bg">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">
+                  Actualizar Información.
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close bg-light"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body d-flex flex-column text-start">
+                <label for="fullName"> Nombre y Apellido </label>
+                <input
+                  type="text"
+                  placeholder="Obligatorio"
+                  id="fullName"
+                  [(ngModel)]="prevNewInfo.fullName"
+                />
+
+                <label for="cc">N° de Identificación</label>
+                <input
+                  type="text"
+                  id="cc"
+                  placeholder="Obligatorio"
+                  [(ngModel)]="prevNewInfo.userId"
+                />
+
+                <label for="inicio">Fecha de Inicio</label>
+                <input
+                  type="date"
+                  [(ngModel)]="prevNewInfo.startDate"
+                  id="inicio"
+                />
+
+                <label for="fin">Fecha de Caducidad</label>
+                <input type="date" [(ngModel)]="prevNewInfo.endDate" id="fin" />
+
+                <label for="dias">Días Totales de Tiquetera</label>
+                <input
+                  type="text"
+                  id="dias"
+                  placeholder="Obligatorio"
+                  [(ngModel)]="prevNewInfo.numberOfDays"
+                />
+
+                <label for="correo">Correo</label>
+                <input
+                  type="text"
+                  id="correo"
+                  placeholder="ejemplo@info.co"
+                  [(ngModel)]="prevNewInfo.email"
+                />
+
+                <label for="celular">Celular</label>
+                <input
+                  type="text"
+                  id="celular"
+                  placeholder="3173253124"
+                  [(ngModel)]="prevNewInfo.phone"
+                />
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cerrar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning text-light"
+                  (click)="editInfo(userIdToEdit)"
+                  data-bs-dismiss="modal"
+                >
+                  Actualizar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DELETE Button -->
+        <i
+          class="bi bi-x-circle-fill icon3"
+          title="Eliminar"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteBtn"
+          (click)="seeDetails(user._id)"
+        ></i>
+        <!-- DELETE Modal -->
+        <div
+          class="modal fade"
+          id="deleteBtn"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered text-light">
+            <div class="modal-content modal-bg">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">
+                  Eliminar Registro
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close bg-light"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                ¿Seguro que quieres eliminar a
+                <span class="text-danger">{{ userNameToDelete }}</span
+                >?
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cerrar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-bs-dismiss="modal"
+                  (click)="deleteUser(userToDeleteId)"
+                >
+                  Eliminar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REMOVE one day -->
+        <button
+          [disabled]="user.numberOfDays < 1"
+          (click)="removeOneDay(user._id)"
+          class="removeDay p-0"
+        >
+          <i
+            class="bi bi-person-fill-dash ms-2 icon4"
+            title="Quitar un día"
+            type="button"
+          ></i>
+        </button>
+      </td>
+    </tr>
+    }
+  </table>
+
+  <!-- filters -->
+  <div
+    class="filters position-absolute d-flex flex-column align-items-center gap-1 rounded p-3 z-3 filters"
+  >
+    <h4 class="text-light">Filtros</h4>
+
+    <!-- Show all filter -->
+    <span class="btn btn-warning" (click)="getAllTickets()" title="Resetear"
+      >Mes Actual</span
+    >
+
+    <!-- AZ - ZA filters -->
+    <div class="d-flex gap-2">
+      <span
+        class="btn btn-warning"
+        (click)="aToZ()"
+        title="Organizar de la A a la Z"
+        >A-Z</span
+      >
+      <span
+        class="btn btn-warning"
+        (click)="zToA()"
+        title="Organizar de la Z a la A"
+        >Z-A</span
+      >
+    </div>
+
+    <!-- Months filter -->
+    <label class="text-light">Mes</label>
+    <select [(ngModel)]="selectedMonth">
+      <option disabled>Escoja un mes</option>
+      <option value="01">Enero</option>
+      <option value="02">Febrero</option>
+      <option value="03">Marzo</option>
+      <option value="04">Abril</option>
+      <option value="05">Mayo</option>
+      <option value="06">Junio</option>
+      <option value="07">Julio</option>
+      <option value="08">Agosto</option>
+      <option value="09">Septiembre</option>
+      <option value="10">Octubre</option>
+      <option value="11">Noviembre</option>
+      <option value="12">Diciembre</option>
+    </select>
+    <span
+      class="btn btn-warning"
+      title="Organizar de la Z a la A"
+      (click)="byMonth()"
+      >Buscar</span
+    >
+
+    <!-- ID Number filter -->
+    <label class="text-light" for="cc">N° de Identificación</label>
+    <input id="cc" type="text" placeholder="CC o TI" [(ngModel)]="wantedId" />
+    <button class="btn btn-warning" (click)="byUserId()">Buscar</button>
+
+    <!-- By Name filter -->
+    <label class="text-light" for="names">Nombre o Apellido</label>
+    <input
+      id="names"
+      type="text"
+      placeholder="Juan Pérez"
+      [(ngModel)]="nameOrLastName"
+      (keyup)="byNameLastname()"
+    />
+  </div>
+</main>
