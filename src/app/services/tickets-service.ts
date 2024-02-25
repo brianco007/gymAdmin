@@ -9,7 +9,7 @@ import { ticketsModel } from '../interfaces/tickets-model';
 export class TicketsService {
   constructor() { }
 
-  API_URL: string = 'http://localhost:3000/tickets/'
+  API_URL: string = 'https://gymusersdata-405b6a41e1bf.herokuapp.com/tickets/'
   httpClient = inject(HttpClient)
 
   // GET REQUESTS

@@ -8,7 +8,7 @@ import { Store } from '../interfaces/store';
 export class StoreService {
   constructor() {}
 
-  API_URL: string = 'http://localhost:3000/store';
+  API_URL: string = 'https://gymusersdata-405b6a41e1bf.herokuapp.com/store';
   httpClient = inject(HttpClient);
 
   // GET REQUESTS

@@ -78,7 +78,7 @@
             type="button"
             class="btn btn-success"
             (click)="addNewProduct()"
-            href="/store"
+            data-bs-dismiss="modal"
             >Agregar</a
           >
         </div>
@@ -134,7 +134,7 @@
                 </h5>
                 <button
                   type="button"
-                  class="btn-close light"
+                  class="btn-close bg-light"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>
@@ -194,7 +194,7 @@
                 </h5>
                 <button
                   type="button"
-                  class="btn-close"
+                  class="btn-close bg-light"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>
@@ -234,7 +234,8 @@
                 >
                   Cancelar
                 </button>
-                <a type="button" class="btn btn-success" href="/store" (click)="editProduct(editID)"
+                <a type="button" class="btn btn-success"             data-bs-dismiss="modal"
+                (click)="editProduct(editID)"
                   >Editar</a
                 >
               </div>
@@ -269,7 +270,7 @@
                 </h5>
                 <button
                   type="button"
-                  class="btn-close light"
+                  class="btn-close light bg-light"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>
@@ -290,7 +291,7 @@
                   type="button"
                   class="btn btn-danger"
                   (click)="deleteProduct(productID)"
-                  href="/store"
+                  data-bs-dismiss="modal"
                 >
                   Eliminar
               </a>

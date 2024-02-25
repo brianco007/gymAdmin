@@ -78,7 +78,10 @@ export class StoreComponent {
     createdBy: this.assignOwner(),
   };
   addNewProduct() {
-    this.storeService.postProduct(this.productData).subscribe((res: any) => {});
+    this.storeService.postProduct(this.productData).subscribe((res: any) =>
+    {
+      this.showAllProducts();
+    });
   }
 
   // DETAILS
@@ -111,12 +114,14 @@ export class StoreComponent {
       this.productName = res.concept;
       this.productID = res._id;
     });
+
+
   }
   editProduct(id: string) {
     this.storeService
       .updateProduct(id, this.previousData)
       .subscribe((res: any) => {
-        console.log(res);
+        this.showAllProducts();
       });
   }
 
@@ -125,8 +130,7 @@ export class StoreComponent {
   productID: string = '';
   deleteProduct(id: string) {
     this.storeService.deleteProduct(id).subscribe((res: any) => {
-      this.router.navigate(['/store']);
-      console.log(res);
+      this.showAllProducts();
     });
   }
 

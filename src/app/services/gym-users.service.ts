@@ -9,7 +9,7 @@ import { UserModel } from '../interfaces/user-model';
 export class GymUsersService {
   constructor() { }
 
-  API_URL: string = 'http://localhost:3000/users/'
+  API_URL: string = 'https://gymusersdata-405b6a41e1bf.herokuapp.com/users/'
   httpClient = inject(HttpClient)
 
   // GET REQUESTS
