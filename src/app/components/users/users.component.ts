@@ -100,7 +100,7 @@ export class UsersComponent {
 
   //FILTERS
   aToZ() {
-    const sortedNames = this.users.sort((a, b) => {
+    const sortedNames = this.contentToShow.sort((a, b) => {
       if (a.fullName < b.fullName) return -1;
       if (a.fullName > b.fullName) return 1;
       return 0;
@@ -109,7 +109,7 @@ export class UsersComponent {
   }
 
   zToA() {
-    const sortedNames = this.users.sort((a, b) => {
+    const sortedNames = this.contentToShow.sort((a, b) => {
       if (a.fullName > b.fullName) return -1;
       if (a.fullName < b.fullName) return 1;
       return 0;
