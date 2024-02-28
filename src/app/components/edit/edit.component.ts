@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { GymUsersService } from '../../services/gym-users.service'; 
 import { UserModel } from '../../interfaces/user-model'; 
 import { ActivatedRoute } from '@angular/router'; 
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -23,9 +23,10 @@ export class EditComponent {
     createdBy: "" 
   }
 
+  router = inject(Router)
   editUser(id: string){
     this.gymUsersService.editUser(id, this.userData).subscribe((res: any)=>{
-      console.log(res)
+      this.router.navigate(["/users"])
     })
   }
 

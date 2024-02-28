@@ -9,7 +9,7 @@ import { LoginModel } from '../interfaces/login-model';
 export class LoginServiceService {
   constructor() {}
 
-  API_URL: string = 'http://localhost:5555/login/';
+  API_URL: string = 'https://gymowners.vercel.app/login';
   httpClient = inject(HttpClient);
   router = inject(Router)
 

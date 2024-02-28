@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; 
 import { GymUsersService } from '../../services/gym-users.service'; 
-import { RouterLink } from '@angular/router'; 
+import { RouterLink, Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-delete',
@@ -32,9 +32,11 @@ export class DeleteComponent {
 
   // Handle Delete
   gymUsersService = inject(GymUsersService)
+  router = inject(Router)
   handleDelete(id: string){
     this.gymUsersService.deleteUser(id).subscribe((res: any)=>{
       this.userInfo = res;
+      this.router.navigate(["/users"])
     })
   }
 

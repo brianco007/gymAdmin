@@ -8,7 +8,7 @@ import { SignupModel } from '../interfaces/signup-model copy';
 export class SignupService {
   constructor() {}
 
-  API_URL: string = 'http://localhost:5555/signup/';
+  API_URL: string = 'https://gymowners.vercel.app/signup';
   httpClient = inject(HttpClient);
 
   signUpNewUser(loginModel: SignupModel) {

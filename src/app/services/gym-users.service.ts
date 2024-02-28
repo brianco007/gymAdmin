@@ -9,7 +9,7 @@ import { UserModel } from '../interfaces/user-model';
 export class GymUsersService {
   constructor() { }
 
-  API_URL: string = 'https://gymusersdata-405b6a41e1bf.herokuapp.com/users/'
+  API_URL: string = 'https://clientsdata.vercel.app/users/'
   httpClient = inject(HttpClient)
 
   // GET REQUESTS

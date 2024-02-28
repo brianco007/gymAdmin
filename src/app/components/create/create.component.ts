@@ -40,10 +40,11 @@ export class CreateComponent {
     this.gymUsersService.createUser(this.userData).subscribe((res: any)=>{
       if(this.userData.fullName && this.userData.idNumber && this.userData.dateStart){
         this.userInfo = res;
-        this.router.navigate(['/users'])
+        this.router.navigate(["/users"])
       } else {
         this.popupMessage = 'Nombre, identificación y fecha de inicio son campos obligatorios.'
       }
     })
+
   }
 }
