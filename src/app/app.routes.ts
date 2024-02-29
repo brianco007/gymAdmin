@@ -17,58 +17,58 @@ export const routes: Routes = [
   {
     path: "home",
     component: HomeComponent,
-    title: "NextGym | Incio"
+    title: "NextGymPro | Incio"
   },
   {
     path: "users",
     component: UsersComponent,
-    title: "NextGym | Mensualidades",
+    title: "NextGymPro | Mensualidades",
   },
   {
     path: "tickets",
     component: TicketsComponent,
-    title: "NextGym | Tiqueteras",
+    title: "NextGymPro | Tiqueteras",
     canActivate: [activateGuard]
   },
   {
     path: "store",
     component: StoreComponent,
-    title: "NextGym | Tienda"
+    title: "NextGymPro | Tienda"
   },
   {
     path: "details/:id",
     component: DetailsComponent,
-    title: "NextGym | Detalles"
+    title: "NextGymPro | Detalles"
   },
   {
     path: "create",
     component: CreateComponent,
-    title: "NextGym | Crear"
+    title: "NextGymPro | Crear"
   },
   {
     path: "delete/:id",
     component: DeleteComponent,
-    title: "NextGym | Eliminar"
+    title: "NextGymPro | Eliminar"
   },
   {
     path: "edit/:id",
     component: EditComponent,
-    title: "NextGym | Editar"
+    title: "NextGymPro | Editar"
   },
   {
     path: "login",
     component: LoginComponent,
-    title: "NextGym | Inicio de Sesión",
+    title: "NextGymPro | Inicio de Sesión",
   },
   {
     path: "signup",
     component: SignupComponent,
-    title: "NextGym | Registrarse"
+    title: "NextGymPro | Registrarse"
   },
   {
     path: "clients",
     component: ClientsComponent,
-    title: "NextGym | Clientes"
+    title: "NextGymPro | Clientes"
   },
   {
     path: "",
@@ -78,6 +78,6 @@ export const routes: Routes = [
   {
     path: "**",
     component: NotFoundComponent,
-    title: "NextGym | Not Found"
+    title: "NextGymPro | Not Found"
   },
 ];

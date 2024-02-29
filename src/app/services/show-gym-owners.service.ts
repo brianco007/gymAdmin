@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class ShowGymOwnersService {
   constructor() {}
 
-  URL = 'http://localhost:5555/login/owner/';
+  URL = 'https://gymowners.vercel.app/login/owner/';
   httpClient = inject(HttpClient);
 
   getOwner(id: string) {
