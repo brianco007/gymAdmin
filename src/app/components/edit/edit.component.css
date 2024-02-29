@@ -7,10 +7,12 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .details-form{
   background: linear-gradient(to top, #222222e1, #222222b1);
   box-shadow: 0 0 50px rgba(0, 0, 0, .7);
+  margin-top: 2rem;
 }
+
