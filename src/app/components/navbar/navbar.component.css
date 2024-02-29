@@ -1,13 +1,12 @@
 .navbar.general{
   position: absolute;
-  z-index: 1;
   width: 100%;
 }
 
 .navbar.users{
   position: absolute;
   top: 0;
-  z-index: 1;
+  z-index: 5;
   width: 100%;
   background: linear-gradient(to top, #222222, #2222226d);
 }
