@@ -24,6 +24,13 @@
       [(ngModel)]="signupModel.password"
     >
 
+    @if(emailExists){
+      <small>Este correo ya está registrado. Ir a <span routerLink="/login" class="redirect">Inicio de Sesión</span></small>
+    }
+
+    @if(invalidEmail){
+      <small>Correo inválido.</small>
+    }
     <button class="btn btn-danger mt-3" [disabled]="!signupModel.email || !signupModel.gymName || !signupModel.password" (click)="handleSubmit()">Registrarse</button>
   </section>
 </main>

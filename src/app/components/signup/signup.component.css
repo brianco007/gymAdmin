@@ -13,3 +13,8 @@
 .main-signup section{
   max-width: 300px;
 }
+
+.redirect{
+  cursor: pointer;
+  text-decoration: underline;
+}

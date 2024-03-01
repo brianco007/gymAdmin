@@ -40,7 +40,6 @@ export class LoginComponent {
           this.message = res.message;
         }
       });
-      console.log(this.userData)
     }
   }
 }

@@ -14,4 +14,8 @@ export class SignupService {
   signUpNewUser(loginModel: SignupModel) {
     return this.httpClient.post(this.API_URL, loginModel);
   }
+
+  getAllOwners(){
+    return this.httpClient.get(this.API_URL);
+  }
 }
