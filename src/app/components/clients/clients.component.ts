@@ -42,6 +42,7 @@ export class ClientsComponent {
         this.end = this.calculateExpiryDate(this.allUsers[0].dateStart).end;
         this.daysLeft = this.calculateExpiryDate(this.allUsers[0].dateStart).daysLeft;
         this.gymId = this.allUsers[0].createdBy;
+        this.showGymName()
         this.foundInMembers = true;
       } else {
         this.foundInMembers = false;     
@@ -90,7 +91,7 @@ export class ClientsComponent {
   ticketInfo: any = []
   getAllTickets(){
     this.ticketService.getTickets().subscribe((res: any)=>{
-      const userId = this.clientForm.value.userId; // get value form FORM
+      const userId = this.clientForm.value.userId; // get value from FORM
       const filteredData = res.filter((user: any) => user.userId === userId)
       this.ticketInfo = filteredData
 
@@ -98,7 +99,6 @@ export class ClientsComponent {
         this.gymId = this.ticketInfo[0].createdBy;
         this.showGymName()
         this.foundInTickets = true;
-
       } else {
         this.foundInTickets = false;
       }

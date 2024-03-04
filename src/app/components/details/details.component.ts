@@ -1,7 +1,7 @@
 import { Component, inject} from '@angular/core';
 import { GymUsersService } from '../../services/gym-users.service';
 import { ActivatedRoute } from '@angular/router'; // to take info from routes
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -74,6 +74,11 @@ export class DetailsComponent{
     } else {
       return 'data text-dark d-flex'
     }
+  }
+
+  router = inject(Router);
+  goBackBtn(){
+    this.router.navigate(["/users"])
   }
   
 }

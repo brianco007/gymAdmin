@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { GymUsersService } from '../../services/gym-users.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt'; // decode token
 import { FormsModule } from '@angular/forms'; 
 import { LoginServiceService } from '../../services/login-service.service'; 
@@ -32,6 +32,12 @@ export class UsersComponent {
     'Nov',
     'Dec'
   ]
+
+  isFilterActive = {
+    az: false,
+    za: false,
+    month: false
+  }
  
   // Show users
   users: any[] = [];
@@ -52,7 +58,6 @@ export class UsersComponent {
       })
       this.contentToShow = filteredData
       this.users = filteredData
-
 
       //format date 01/02/2024 for 01-Feb-2024
       this.contentToShow.forEach((obj) => {
@@ -77,10 +82,13 @@ export class UsersComponent {
         return slicedDate === currentMonth;
       })
       this.contentToShow = sortedByCurrentMonth;
+
+      
     });
   }
   
   // Token validation 
+  actRoute = inject(ActivatedRoute)
   ngOnInit() {
     const token = localStorage.getItem('token');
     if(token){
@@ -98,6 +106,7 @@ export class UsersComponent {
   }
 }
 
+
   //FILTERS
   aToZ() {
     const sortedNames = this.contentToShow.sort((a, b) => {
@@ -105,7 +114,7 @@ export class UsersComponent {
       if (a.fullName > b.fullName) return 1;
       return 0;
     });
-    this.contentToShow = sortedNames
+    this.contentToShow = sortedNames;
   }
 
   zToA() {
@@ -121,6 +130,8 @@ export class UsersComponent {
   byMonth(){
     const filteredData = this.users.filter(user=> user.dateStart.slice(3, 6) === this.selectedMonth)
     this.contentToShow = filteredData;
+    this.isFilterActive.month = true;
+   
   }
 
   wantedId: string = '';
@@ -137,4 +148,5 @@ export class UsersComponent {
     const sortedData = this.users.filter(user => user.fullName.toLowerCase().indexOf(this.nameOrLastName.toLowerCase()) > -1)
     this.contentToShow = sortedData;
   }
+
 }

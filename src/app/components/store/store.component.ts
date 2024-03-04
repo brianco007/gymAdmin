@@ -81,6 +81,14 @@ export class StoreComponent {
     this.storeService.postProduct(this.productData).subscribe((res: any) =>
     {
       this.showAllProducts();
+      //Reset form values
+      this.productData = {
+        concept: '',
+        value: NaN,
+        quantity: 1,
+        notes: '',
+        createdBy: this.assignOwner(),
+      }
     });
   }
 
