@@ -62,8 +62,12 @@ input{
 }
 
 .top-filters{
-  background: linear-gradient(to top, #222222, #222222ed);
-  border: 2px dotted red;
+  background: linear-gradient(to top, #222222, #222222a4);
+  max-width: 1000px;
+}
 
-
+@media screen and (max-width: 800px){
+  .top-filters{
+    display: none;
+  }
 }
