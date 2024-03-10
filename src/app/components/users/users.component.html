@@ -7,6 +7,35 @@
     Agregar <i class="bi bi-plus-circle-fill"></i>
   </button>
 
+  <div class="top-filters d-flex flex-column gap-1 my-3 rounded p-3 align-items-center text-light">
+    <h5>Filtros de Búsqueda</h5>
+    <div class="d-flex md-flex-column gap-5">
+      <!-- ID Number filter -->
+      <div class="d-flex gap-2 align-items-center">
+        <label for="cc">CC o TI</label>
+        <input
+          id="cc"
+          type="text"
+          placeholder="N° de Identificación"
+          [(ngModel)]="wantedId"
+        />
+        <button class="btn btn-danger" (click)="byUserId()">Buscar</button>
+      </div>
+  
+      <!-- By Name filter -->
+      <div class="d-flex gap-2 align-items-center">
+        <label class="text-light" for="names">Nombre o Apellido</label>
+        <input
+          id="names"
+          type="text"
+          placeholder="Juan Pérez"
+          [(ngModel)]="nameOrLastName"
+          (keyup)="byNameLastname()"
+        />
+      </div>
+    </div>
+  </div>
+
   <table class="text-light text-center mt-3 position-relative">
     <!-- total users -->
     <span class="totalUsers text-light border-dark position-absolute">
@@ -18,6 +47,9 @@
       <th class="p-1 ">Fecha de Inicio</th>
       <th class="p-1 rounded">Acciones</th>
     </tr>
+
+    @if(!contentToShow.length){ <p class="text-white p-1">Sin usuarios.</p> }
+
 
     @for(user of contentToShow; track user._id){
     <tr class="data text-dark border border-dark">

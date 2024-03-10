@@ -3,20 +3,20 @@
 
   <section class="d-flex flex-column create-form p-4 rounded mt-5">
     <h2>Agregar nueva persona.</h2>
-    <label for="name">Nombre y Apellido</label>
+    <label for="name">Nombre y Apellido<span class="text-danger h5"> *</span></label>
     <input type="text" id="name" placeholder="Obligatorio" class="p-1"  [(ngModel)]="userData.fullName">
 
-    <label for="cc">CC o TI</label>
+    <label for="cc">CC o TI<span class="text-danger h5"> *</span></label>
     <input type="text" id="cc" placeholder="Obligatorio" class="p-1"  [(ngModel)]="userData.idNumber">
+
+    <label for="date">Fecha de Inicio<span class="text-danger h5"> *</span></label>
+    <input type="date" id="date" placeholder="Obligatorio" class="p-1" [(ngModel)]="userData.dateStart">
 
     <label for="phone">Celular </label>
     <input type="text" id="phone"  class="p-1" [(ngModel)]="userData.phone">
 
     <label for="email">Correo electrónico </label>
     <input type="text" id="email" class="p-1" [(ngModel)]="userData.email">
-
-    <label for="date">Fecha de Inicio </label>
-    <input type="date" id="date" placeholder="Obligatorio" class="p-1" [(ngModel)]="userData.dateStart">
   </section>
 
   @if(popupMessage){

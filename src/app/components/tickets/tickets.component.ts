@@ -8,6 +8,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { ticketsModel } from '../../interfaces/tickets-model';
+import Swal from 'sweetalert2'
 
 const jwtHelperService = new JwtHelperService();
 
@@ -93,6 +94,9 @@ export class TicketsComponent {
   }
 
   // CREATE
+  message: string = "";
+  approve: string = "";
+
   formData: ticketsModel = {
     fullName: '',
     userId: '',
@@ -104,18 +108,24 @@ export class TicketsComponent {
     email: '',
   };
   addNewMember() {
+    const addBtn = document.getElementById('add-btn')!
     this.ticketsService.createTicket(this.formData).subscribe((res) => {
-      this.getAllTickets();
-      // reset values
-      this.formData = {
-        fullName: '',
-        userId: '',
-        startDate: '',
-        endDate: '',
-        numberOfDays: '',
-        createdBy: this.assignOwner(),
-        phone: '',
-        email: '',
+      if(this.formData.fullName && this.formData.userId && this.formData.startDate && this.formData.endDate && this.formData.numberOfDays){
+        this.message = ""
+        this.getAllTickets();
+        // reset values
+        this.formData = {
+          fullName: '',
+          userId: '',
+          startDate: '',
+          endDate: '',
+          numberOfDays: '',
+          createdBy: this.assignOwner(),
+          phone: '',
+          email: '',
+        }
+      } else {
+        this.noti();
       }
     });
   }
@@ -227,5 +237,18 @@ export class TicketsComponent {
     }
     const sortedData = this.ticketsData.filter(user => user.fullName.toLowerCase().indexOf(this.nameOrLastName.toLowerCase()) > -1)
     this.contentToShow = sortedData;
+  }
+
+  noti(){
+    Swal.fire({
+      title: 'No se creó registro.',
+      text: 'Por favor, complete todos los campos obligatorios marcados con *.',
+      icon: 'error',
+      confirmButtonText: 'Entendido',
+      background: 'rgba(0, 0, 0, .8)',
+      color: '#fff',
+      confirmButtonColor: '#c64242',
+      width: '20rem'
+    })
   }
 }

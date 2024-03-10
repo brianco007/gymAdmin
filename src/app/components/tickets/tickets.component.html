@@ -35,7 +35,7 @@
           ></button>
         </div>
         <div class="modal-body d-flex flex-column text-light">
-          <label for="fullName"> Nombre y Apellido </label>
+          <label for="fullName"> Nombre y Apellido<span class="text-danger h5"> *</span> </label>
           <input
             type="text"
             placeholder="Obligatorio"
@@ -43,7 +43,7 @@
             [(ngModel)]="formData.fullName"
           />
 
-          <label for="cc">N° de Identificación</label>
+          <label for="cc">N° de Identificación<span class="text-danger h5"> *</span></label>
           <input
             type="text"
             id="cc"
@@ -51,13 +51,13 @@
             [(ngModel)]="formData.userId"
           />
 
-          <label for="inicio">Fecha de Inicio</label>
+          <label for="inicio">Fecha de Inicio<span class="text-danger h5"> *</span></label>
           <input type="date" [(ngModel)]="formData.startDate" id="inicio" />
 
-          <label for="fin">Fecha de Caducidad</label>
+          <label for="fin">Fecha de Caducidad<span class="text-danger h5"> *</span></label>
           <input type="date" [(ngModel)]="formData.endDate" id="fin" />
 
-          <label for="dias">Días Totales de Tiquetera</label>
+          <label for="dias">Días Totales de Tiquetera<span class="text-danger h5"> *</span></label>
           <input
             type="text"
             id="dias"
@@ -81,7 +81,10 @@
             [(ngModel)]="formData.phone"
           />
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer text-danger">
+          @if(message){
+            <small>{{ message }}</small>
+          }
           <button
             type="button"
             class="btn btn-secondary"
@@ -93,6 +96,7 @@
             type="button"
             class="btn btn-warning text-light"
             (click)="addNewMember()"
+            id="add-btn"
             data-bs-dismiss="modal"
           >
             Agregar
@@ -114,6 +118,8 @@
       <th class="p-1">Días</th>
       <th class="p-1 rounded">Acciones</th>
     </tr>
+    @if(!contentToShow.length){ <p class="text-white p-1">Sin usuarios.</p> }
+
 
     @for(user of contentToShow; track user._id){
     <tr class="data text-dark border border-dark">

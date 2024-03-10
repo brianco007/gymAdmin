@@ -4,13 +4,14 @@ import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt'; // decode token
 import { FormsModule } from '@angular/forms'; 
 import { LoginServiceService } from '../../services/login-service.service'; 
+import { DetailsComponent } from '../details/details.component';
 
 const jwtHelperService = new JwtHelperService();
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, DetailsComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
 })
@@ -33,19 +34,15 @@ export class UsersComponent {
     'Dec'
   ]
 
-  isFilterActive = {
-    az: false,
-    za: false,
-    month: false
-  }
- 
+
+
   // Show users
   users: any[] = [];
   contentToShow: any[] = [];
   showAllUsers() {
     this.gymUsersService.getUsers().subscribe((res: any) => {
       this.users = res.reverse();
-
+      console.log(this.users)
       //show the name of the gym on top
       const tokenFromDom: any = localStorage.getItem('token');
       this.gymName = jwtHelperService.decodeToken(tokenFromDom).gymName.toUpperCase();
@@ -129,9 +126,7 @@ export class UsersComponent {
   selectedMonth: string = ''
   byMonth(){
     const filteredData = this.users.filter(user=> user.dateStart.slice(3, 6) === this.selectedMonth)
-    this.contentToShow = filteredData;
-    this.isFilterActive.month = true;
-   
+    this.contentToShow = filteredData; 
   }
 
   wantedId: string = '';
@@ -148,5 +143,4 @@ export class UsersComponent {
     const sortedData = this.users.filter(user => user.fullName.toLowerCase().indexOf(this.nameOrLastName.toLowerCase()) > -1)
     this.contentToShow = sortedData;
   }
-
 }

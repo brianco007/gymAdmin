@@ -5,6 +5,8 @@ import { LoginServiceService } from '../../services/login-service.service';
 import { Store } from '../../interfaces/store';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import Swal from 'sweetalert2'
+
 
 const jwtHelperService = new JwtHelperService();
 
@@ -78,18 +80,23 @@ export class StoreComponent {
     createdBy: this.assignOwner(),
   };
   addNewProduct() {
-    this.storeService.postProduct(this.productData).subscribe((res: any) =>
-    {
-      this.showAllProducts();
-      //Reset form values
-      this.productData = {
-        concept: '',
-        value: NaN,
-        quantity: 1,
-        notes: '',
-        createdBy: this.assignOwner(),
-      }
-    });
+    if(this.productData.concept && this.productData.value && this.productData.quantity){
+
+      this.storeService.postProduct(this.productData).subscribe((res: any) =>
+      {
+        this.showAllProducts();
+        //Reset form values
+        this.productData = {
+          concept: '',
+          value: NaN,
+          quantity: 1,
+          notes: '',
+          createdBy: this.assignOwner(),
+        }
+      });
+    } else {
+      this.noti();
+    }
   }
 
   // DETAILS
@@ -244,5 +251,18 @@ export class StoreComponent {
 
     // get Total $$
     this.getTotal('Total en este día: $', this.contentToShow);
+  }
+
+  noti(){
+    Swal.fire({
+      title: 'No se creó registro.',
+      text: 'Por favor, complete todos los campos obligatorios marcados con *',
+      icon: 'error',
+      confirmButtonText: 'Entendido',
+      background: 'rgba(0, 0, 0, .8)',
+      color: '#fff',
+      confirmButtonColor: '#c64242',
+      width: '20rem'
+    })
   }
 }

@@ -60,3 +60,10 @@ table{
 input{
   outline: none;
 }
+
+.top-filters{
+  background: linear-gradient(to top, #222222, #222222ed);
+  border: 2px dotted red;
+
+
+}

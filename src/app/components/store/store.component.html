@@ -38,32 +38,43 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body d-flex flex-column gap-2">
+        <div class="modal-body d-flex flex-column gap-1">
+          <label for="product" class="text-light">¿Qué vendió?<span class="text-danger h5"> *</span></label>
           <input
             type="text"
-            placeholder="¿Qué vendió?"
+            placeholder="Proteina 5lb"
             [(ngModel)]="productData.concept"
             class="p-1"
+            id="product"
           />
+
+          <label for="price" class="text-light">Precio<span class="text-danger h5"> *</span></label>
           <input
             type="number"
-            placeholder="Precio"
+            placeholder="3500 (sin comas y sin puntos)"
             [(ngModel)]="productData.value"
             class="p-1"
+            id="price"
           />
+
+          <label for="quantity" class="text-light">Cantidad<span class="text-danger h5"> *</span></label>
           <input
             type="number"
-            placeholder="Cantidad"
             value="1"
+            min="1"
             [(ngModel)]="productData.quantity"
             class="p-1"
+            id="quantity"
           />
+
+          <label for="observaciones" class="text-light">Observaciones</label>
           <textarea
             cols="5"
             rows="2"
-            placeholder="Observaciones"
+            placeholder="NA"
             [(ngModel)]="productData.notes"
             class="p-1"
+            id="observaciones"
           ></textarea>
         </div>
         <div class="modal-footer">
@@ -94,6 +105,7 @@
       <th class="p-1 text-center">Total</th>
       <th class="p-1 text-center rounded">Acciones</th>
     </tr>
+    @if(!contentToShow.length){ <p class="text-white p-1">Sin ventas.</p> }
     @for(product of contentToShow; track product._id){
     <tr class="data">
       <td class=" p-1 border border-dark text-center">
