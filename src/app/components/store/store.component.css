@@ -1,3 +1,11 @@
+*{
+  font-size: 16px;
+}
+
+.gymName{
+  font-size: 2rem;
+}
+
 .main-store{
   position: absolute;
   top: 0;
@@ -57,4 +65,22 @@ textarea{
 
 input{
   outline: none;
+}
+
+
+@media screen and (min-width: 1040px){
+  .filters{
+    top: 20%;
+    left: 0;
+    transform: translateX(0);
+    transition: all .4s ease;
+    background: linear-gradient(to top, #222222, #222222ed);
+    box-shadow: 0 0 25px rgba(0, 0, 0, .7);
+    border: 2px dotted green;
+    cursor: pointer;
+  }
+
+  i{
+    font-size: 20px;
+  }
 }

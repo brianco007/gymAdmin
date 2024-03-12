@@ -1,3 +1,12 @@
+*{
+  font-size: 16px;
+}
+
+.gymName{
+  font-size: 2rem;
+}
+
+
 .main-tickets{
   position: absolute;
   top: 0;
@@ -71,3 +80,20 @@ input{
   outline: none;
 }
 
+.top-filters{
+  background: linear-gradient(to top, #222222, #222222a4);
+  max-width: 550px;
+}
+
+@media screen and (min-width: 1200px){
+  .filters{
+    top: 20%;
+    left: 0;
+    transform: translateX(0);
+    transition: all .4s ease;
+    background: linear-gradient(to top, #222222, #222222ed);
+    box-shadow: 0 0 25px rgba(0, 0, 0, .7);
+    border: 2px dotted orange;
+    cursor: pointer;
+  }
+}

@@ -1,5 +1,5 @@
 <main class="main-tickets d-flex align-items-center flex-column py-5 px-2">
-  <h2 class="text-light mt-4">{{ gymName }}</h2>
+  <h2 class="text-light mt-4 gymName">{{ gymName }}</h2>
 
   <!-- CREATE Button -->
   <button
@@ -106,6 +106,37 @@
     </div>
   </div>
 
+  <!-- TOP FILTERS -->
+  <div class="container top-filters text-center flex-column gap-1 my-3 rounded p-3 text-light">
+    <h5>Filtros de Búsqueda <i class="bi bi-search"></i></h5>
+    <div class="row">
+      <!-- ID Number filter -->
+      <div class="col col-md-6 d-flex flex-column align-items-center">
+        <label for="cc">CC o TI</label>
+        <input
+          id="cc"
+          type="number"
+          placeholder="N° de Identificación"
+          [(ngModel)]="wantedId"
+          (keyup)="byUserId()"
+        />
+      </div>
+  
+      <!-- By Name filter -->
+      <div class="col-md-6 d-flex flex-column align-items-center">
+        <label class="text-light" for="names">Nombre o Apellido</label>
+        <input
+          id="names"
+          type="text"
+          placeholder="Juan Pérez"
+          [(ngModel)]="nameOrLastName"
+          (keyup)="byNameLastname()"
+        />
+      </div>
+    </div>
+  </div>
+
+
   <!-- SHOW USERS -->
   <table class="text-light text-center mt-3 position-relative">
     <!-- total users -->
@@ -123,11 +154,11 @@
 
     @for(user of contentToShow; track user._id){
     <tr class="data text-dark border border-dark">
-      <td class="border border-dark p-1">{{ user.fullName }}</td>
-      <td class="border border-dark p-1">{{ user.numberOfDays }}</td>
+      <td class="border border-dark p-1 px-md-3">{{ user.fullName }}</td>
+      <td class="border border-dark p-1 px-md-3">{{ user.numberOfDays }}</td>
 
       <!-- CRUD actions -->
-      <td class="p-1">
+      <td class="p-1 px-md-3">
         <!-- DETAILS Button -->
         <i
           class="bi bi-eye-fill icon1"

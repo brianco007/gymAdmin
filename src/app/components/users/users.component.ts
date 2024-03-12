@@ -131,7 +131,10 @@ export class UsersComponent {
 
   wantedId: string = '';
   byUserId(){
-    const sortedData = this.users.filter(user => user.idNumber === this.wantedId)
+    if(!this.wantedId){
+      this.showAllUsers()
+    }
+    const sortedData = this.users.filter(user => user.idNumber.indexOf(this.wantedId) > -1)
     this.contentToShow = sortedData
   }
 

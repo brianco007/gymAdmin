@@ -1,29 +1,30 @@
 <main class="main-users d-flex align-items-center flex-column py-5 px-2">
   <!-- users interface -->
-  <h2 class="text-light mt-4">{{ gymName }}</h2>
+  <h2 class="text-light mt-4 gymName">{{ gymName }}</h2>
 
   <!-- add btn -->
   <button class="btn btn-danger" routerLink="/create">
     Agregar <i class="bi bi-plus-circle-fill"></i>
   </button>
 
+  <!-- filters on top -->
   <div class="container top-filters text-center flex-column gap-1 my-3 rounded p-3 text-light">
     <h5>Filtros de Búsqueda <i class="bi bi-search"></i></h5>
-    <div class="row d-flex justify-content-between">
+    <div class="row">
       <!-- ID Number filter -->
-      <div class="d-flex gap-2 align-items-center col ">
+      <div class="col col-md-6 d-flex flex-column align-items-center">
         <label for="cc">CC o TI</label>
         <input
           id="cc"
-          type="text"
+          type="number"
           placeholder="N° de Identificación"
           [(ngModel)]="wantedId"
+          (keyup)="byUserId()"
         />
-        <button class="btn btn-danger" (click)="byUserId()">Buscar</button>
       </div>
   
       <!-- By Name filter -->
-      <div class="d-flex gap-2 align-items-center col">
+      <div class="col-md-6 d-flex flex-column align-items-center">
         <label class="text-light" for="names">Nombre o Apellido</label>
         <input
           id="names"
@@ -44,7 +45,8 @@
 
     <tr class="table-titles text-light">
       <th class="p-1 rounded">Nombre</th>
-      <th class="p-1 ">Fecha de Inicio</th>
+      <th class="p-1 ">Inicia</th>
+      <th class="p-1 ">Termina</th>
       <th class="p-1 rounded">Acciones</th>
     </tr>
 
@@ -53,9 +55,10 @@
 
     @for(user of contentToShow; track user._id){
     <tr class="data text-dark border border-dark">
-      <td class="border border-dark p-1">{{ user.fullName }}</td>
-      <td class="border border-dark p-1">{{ user.dateStart }}</td>
-      <td class="p-1">
+      <td class="border border-dark p-1 px-md-3">{{ user.fullName }}</td>
+      <td class="border border-dark p-1 px-md-3">{{ user.startEndLeft.start }}</td>
+      <td class="border border-dark p-1 px-md-3">{{ user.startEndLeft.end }}</td>
+      <td class="p-1 px-md-3">
         <a [routerLink]="'/details/' + user._id" class="text-decoration-none"
           ><i
             class="bi bi-eye-fill icon1"
@@ -79,7 +82,7 @@
   <div
     class="az-btn position-absolute d-flex flex-column align-items-center gap-1 rounded p-3 z-3 filters"
   >
-    <h4 class="text-light">Filtros</h4>
+    <h4 class="text-light">Herramientas<i class="bi bi-tools ms-2"></i></h4>
 
     <!-- Show all filter -->
     <span class="btn btn-danger" (click)="showAllUsers()" title="Resetear"

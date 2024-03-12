@@ -226,7 +226,10 @@ export class TicketsComponent {
 
   wantedId: string = '';
   byUserId(){
-    const sortedData = this.ticketsData.filter(user => user.userId === this.wantedId)
+    if(!this.wantedId){
+      this.getAllTickets()
+    }
+    const sortedData = this.ticketsData.filter(user => user.userId.indexOf(this.wantedId) > -1)
     this.contentToShow = sortedData
   }
 

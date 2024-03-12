@@ -2,7 +2,7 @@
   class="main-store d-flex flex-column justify-content-center align-items-center text-light py-5 px-2 position-relative"
 >
   <!-- title -->
-  <h2 class="mt-4">{{ gymName }}</h2>
+  <h2 class="mt-4 gymName">{{ gymName }}</h2>
   <h6> {{ grandTotal }}</h6>
 
   <!-- CREATE Button trigger modal -->
@@ -108,17 +108,17 @@
     @if(!contentToShow.length){ <p class="text-white p-1">Sin ventas.</p> }
     @for(product of contentToShow; track product._id){
     <tr class="data">
-      <td class=" p-1 border border-dark text-center">
+      <td class=" p-1 px-md-3 border border-dark text-center">
         {{ product.concept }}
       </td>
-      <td class=" p-1 border border-dark text-center">
+      <td class=" p-1 px-md-3 border border-dark text-center">
         {{ product.quantity }}
       </td>
-      <td class=" p-1 border border-dark text-end">
+      <td class=" p-1 px-md-3 border border-dark text-end">
         {{currency(product.value * product.quantity)  }}
       </td>
 
-      <td class="p-sm-1 border border-dark">
+      <td class="p-1 px-md-3 border border-dark">
         <!-- DETAILS btn -->
           <i
             title="Ver detalles"
