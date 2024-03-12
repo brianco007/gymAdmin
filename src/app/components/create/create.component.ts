@@ -29,7 +29,8 @@ export class CreateComponent {
     idNumber: "",
     phone: "",
     email: "",
-    dateStart: "", 
+    dateStart: "",
+    notes: "", 
     createdBy: this.assignOwner()  
   }
 

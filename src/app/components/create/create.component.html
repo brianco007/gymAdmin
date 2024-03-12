@@ -7,16 +7,20 @@
     <input type="text" id="name" placeholder="Obligatorio" class="p-1"  [(ngModel)]="userData.fullName">
 
     <label for="cc">CC o TI<span class="text-danger h5"> *</span></label>
-    <input type="text" id="cc" placeholder="Obligatorio" class="p-1"  [(ngModel)]="userData.idNumber">
+    <input type="number" id="cc" placeholder="Obligatorio" class="p-1"  [(ngModel)]="userData.idNumber">
 
     <label for="date">Fecha de Inicio<span class="text-danger h5"> *</span></label>
     <input type="date" id="date" placeholder="Obligatorio" class="p-1" [(ngModel)]="userData.dateStart">
 
     <label for="phone">Celular </label>
-    <input type="text" id="phone"  class="p-1" [(ngModel)]="userData.phone">
+    <input type="number" id="phone"  class="p-1" [(ngModel)]="userData.phone">
 
     <label for="email">Correo electrónico </label>
     <input type="text" id="email" class="p-1" [(ngModel)]="userData.email">
+
+    <label for="notes">Apuntes </label>
+    <textarea id="notes" id="email" [(ngModel)]="userData.notes"  class="p-1"  cols="30" rows="3" ></textarea>
+
   </section>
 
   @if(popupMessage){
