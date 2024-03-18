@@ -105,7 +105,7 @@
       <th class="p-1 text-center">Total</th>
       <th class="p-1 text-center rounded">Acciones</th>
     </tr>
-    @if(!contentToShow.length){ <p class="text-white p-1">Sin ventas.</p> }
+    @if(!contentToShow.length){ <p class="text-dark p-1">Sin ventas.</p> }
     @for(product of contentToShow; track product._id){
     <tr class="data">
       <td class=" p-1 px-md-3 border border-dark text-center">
@@ -331,5 +331,8 @@
     />
     <button class="btn btn-success" (click)="chooseDate()">Buscar</button>
   </div>
+
+  <!-- toggle tools btn  -->
+  <button class="btn btn-success tools-btn" (click)="toggleToolsMenu()"><i class="bi bi-tools"></i></button>
 </main>
 

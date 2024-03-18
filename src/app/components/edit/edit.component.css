@@ -3,11 +3,12 @@
   top: 0;
   width: 100%;
 
-  background: linear-gradient(to top, #222222cf, #22222241) , url('../../../assets/actions.jpg');
+  background: #222;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   min-height: 100vh;
+  margin-top: 50px;
 }
 
 .details-form{
@@ -16,3 +17,6 @@
   margin-top: 2rem;
 }
 
+table{
+  max-width: 300px;
+}

@@ -24,18 +24,18 @@ export class TicketsComponent {
   ticketsData: any[] = [];
   contentToShow: any[] = [];
   months: string[] = [
-    'Ene',
-    'Feb',
-    'Mar',
-    'Abr',
-    'May',
-    'Jun',
-    'Jul',
-    'Ago',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre'
   ]
 
   getAllTickets() {
@@ -56,12 +56,12 @@ export class TicketsComponent {
       this.ticketsData = filteredData;
       this.contentToShow = filteredData.reverse();
 
-      //show CURRENT Month data
-      const currentMonthIndex = new Date().getMonth()+1
-      const formatedMonth = ('0' + currentMonthIndex).slice(-2)
+      // show CURRENT Month data
+      const currentMonthIndex = new Date().getMonth()
+      const formatedMonth = this.months[currentMonthIndex]
       
       const sortedByCurrentMonth = this.contentToShow.filter((ticket: any)=>{
-        const ticketDate = ticket.startDate.slice(5, 7)
+        const ticketDate = ticket.startDate.split(',')[0].slice(3)
         return ticketDate === formatedMonth
       })
       this.contentToShow = sortedByCurrentMonth;
@@ -253,5 +253,12 @@ export class TicketsComponent {
       confirmButtonColor: '#c64242',
       width: '20rem'
     })
+  }
+
+   // toggle tools menu
+   toggleToolsMenu(){
+    const sideFilters = document.querySelector('.filters')!;
+
+    sideFilters.classList.toggle('active');
   }
 }

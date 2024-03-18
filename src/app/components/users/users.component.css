@@ -10,22 +10,23 @@
   position: absolute;
   top: 0;
   width: 100%;
-  background: linear-gradient(to right, #0f202789, #203a438f, #2c536499), url('../../../assets/actions.jpg');
+  background: #222;
   background-size: cover;
-  min-height: 110vh;
+  min-height: 130vh;
+  margin-top: 50px;
 }
 
 .az-btn{
-  top: 20%;
+  top: 170px;
   left: 0;
-  transform: translateX(-93%);
+  transform: translateX(-100%);
   transition: all .4s ease;
   background: linear-gradient(to top, #222222, #222222ed);
   box-shadow: 0 0 25px rgba(0, 0, 0, .7);
   border: 2px dotted red;
   cursor: pointer;
 }
-.az-btn:hover{
+.az-btn.active{
   transform: translateX(0);
 }
 
@@ -42,12 +43,14 @@
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 }
 
-.table-titles{
-  background: linear-gradient(to top, #222222cf, #22222241)
+.table-titles th{
+  background: #222;
+  border: 1px solid white;
 }
 
 .data{
   background: linear-gradient(to left, #ece9e6, #fffffff6);
+  position: relative;
 }
 
 
@@ -75,22 +78,48 @@ input{
 .top-filters{
   background: linear-gradient(to top, #222222, #222222a4);
   max-width: 550px;
+  border: 3px solid rgb(198, 50, 50);
+}
+
+.badge{
+  position: absolute;
+  transform: rotate(-90deg);
+  top: 0;
+  right: -15px;
+
+}
+.badge i{
+  font-size: .5rem;
+}
+
+table{
+  background: linear-gradient(to left, #ece9e6, #fffffff6);
+}
+
+.tools-btn{
+  position: absolute;
+  left: 10px;
+  top: 120px;
 }
 
 @media screen and (min-width: 1040px){
   .az-btn{
-    top: 20%;
+    top: 10%;
     left: 0;
     transform: translateX(0);
     transition: all .4s ease;
     background: linear-gradient(to top, #222222, #222222ed);
     box-shadow: 0 0 25px rgba(0, 0, 0, .7);
-    border: 2px dotted red;
+    border: 2px dotted rgb(198, 50, 50);
     cursor: pointer;
   }
 
   i{
     font-size: 20px;
+  }
+
+  .tools-btn{
+    display: none;
   }
 }
 

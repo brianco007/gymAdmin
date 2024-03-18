@@ -44,21 +44,25 @@
     </span>
 
     <tr class="table-titles text-light">
-      <th class="p-1 rounded">Nombre</th>
+      <th class="p-1 ">Nombre</th>
       <th class="p-1 ">Inicia</th>
       <th class="p-1 ">Termina</th>
-      <th class="p-1 rounded">Acciones</th>
+      <th class="p-1 ">Acciones</th>
     </tr>
 
-    @if(!contentToShow.length){ <p class="text-white p-1">Sin usuarios.</p> }
+    @if(!contentToShow.length){ <p class=" text-dark p-1">Sin usuarios.</p> }
 
 
     @for(user of contentToShow; track user._id){
     <tr class="data text-dark border border-dark">
-      <td class="border border-dark p-1 px-md-3">{{ user.fullName }}</td>
-      <td class="border border-dark p-1 px-md-3">{{ user.startEndLeft.start }}</td>
-      <td class="border border-dark p-1 px-md-3">{{ user.startEndLeft.end }}</td>
-      <td class="p-1 px-md-3">
+      <td class="border border-dark p-1 px-md-3">
+        {{ user.fullName }}
+      </td>
+      <td class="border border-dark p-1 px-md-3">{{ user.datesToShow.start }}</td>
+      <td class="border border-dark p-1 px-md-3">{{ user.datesToShow.end }}</td>
+
+      <!-- action icons -->
+      <td class="p-1 px-md-3 d-flex gap-2 flex-wrap">
         <a [routerLink]="'/details/' + user._id" class="text-decoration-none"
           ><i
             class="bi bi-eye-fill icon1"
@@ -67,13 +71,30 @@
         ></a>
 
         <a [routerLink]="'/edit/' + user._id" class="text-decoration-none"
-          ><i class="bi bi-pen-fill mx-2 icon2" title="Edit"></i
+          ><i class="bi bi-pen-fill icon2" title="Edit"></i
         ></a>
 
         <a [routerLink]="'/delete/' + user._id" class="text-decoration-none"
           ><i class="bi bi-x-circle-fill icon3" title="Delete"></i
         ></a>
+          
+        @if(user.phone){
+
+          <a [href]="'https://wa.me/57'+user.phone+'?text=¡Hola, ' + user.fullName + '! Pasamos a recordarte que tu mensualidad con ' + '*' + gymName + '*' + ' vencerá el día ' + '*' + user.datesToShow.end + '*'" class="text-decoration-none"
+           target="_blank" ><i class="bi bi-whatsapp text-success"></i></a>
+        }
       </td>
+
+        <!-- Badge to show colors -->
+      <span class="badge">
+        @if(user.datesToShow.daysLeft <= 3 && user.datesToShow.daysLeft >= 0){
+          <i class="bi bi-bookmark-fill text-warning"></i>
+        } @else if (user.datesToShow.daysLeft < 0) {
+          <i class="bi bi-bookmark-fill text-danger"></i>
+        } @else {
+          <i class="bi bi-bookmark-fill text-success"></i>
+        }
+      </span>
     </tr>
     }
   </table>
@@ -149,6 +170,16 @@
       [(ngModel)]="nameOrLastName"
       (keyup)="byNameLastname()"
     />
+
+    <!-- about to expire -->
+    <label class="text-light" for="names">Usuarios por vencer </label>
+    <button class="btn btn-danger" (click)="aboutToExpire()">Mostrar </button>
+
+    <!-- Expired memberships -->
+    <label class="text-light" for="names">Usuarios Vencidos </label>
+    <button class="btn btn-danger" (click)="expiredMemberships()">Mostrar </button>
   </div>
 
+  <!-- toggle tools btn  -->
+  <button class="btn btn-danger tools-btn" (click)="toggleToolsMenu()"><i class="bi bi-tools"></i></button>
 </main>
