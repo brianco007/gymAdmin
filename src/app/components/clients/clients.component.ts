@@ -37,6 +37,7 @@ export class ClientsComponent {
       const userId = this.clientForm.value.userId; // get value form FORM
       const sortedData = res.filter((user: any) => user.idNumber === userId)
       this.allUsers = sortedData;
+      console.log(this.allUsers)
       if(this.allUsers.length){
         this.start = this.calculateExpiryDate(this.allUsers[0].dateStart).start;
         this.end = this.calculateExpiryDate(this.allUsers[0].dateStart).end;

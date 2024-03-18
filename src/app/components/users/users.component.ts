@@ -56,31 +56,16 @@ export class UsersComponent {
       this.contentToShow = filteredData
       this.users = filteredData
 
-      //format date 01/02/2024 for 01-Feb-2024
-      this.contentToShow.forEach((obj) => {
-  
-        obj.dateStart = new Date(obj.dateStart);
-        obj.dateStart = obj.dateStart.getTime() + 1 * 24 * 60 * 60 * 1000;
-        obj.dateStart = new Date(obj.dateStart);
-        obj.dateStart =
-          ('0' + obj.dateStart.getDate()).slice(-2) +
-          ' ' +
-          this.months[obj.dateStart.getMonth()] +
-          ', ' +
-          obj.dateStart.getFullYear();
-      });
 
       // show only current month data
       const currentMonthIndex = new Date().getMonth();
       const currentMonth = this.months[currentMonthIndex];
       const sortedByCurrentMonth = this.users.filter(user=>{
-        const date = user.dateStart;
+        const date = user.datesToShow.start;
         const slicedDate = date.slice(2, 6).trim()
         return slicedDate === currentMonth;
       })
-      this.contentToShow = sortedByCurrentMonth;
-
-      
+      this.contentToShow = sortedByCurrentMonth;   
     });
   }
   
@@ -125,7 +110,7 @@ export class UsersComponent {
 
   selectedMonth: string = ''
   byMonth(){
-    const filteredData = this.users.filter(user=> user.dateStart.slice(3, 6) === this.selectedMonth)
+    const filteredData = this.users.filter(user=> user.datesToShow.start.slice(3, 6) === this.selectedMonth)
     this.contentToShow = filteredData; 
   }
 
@@ -145,5 +130,24 @@ export class UsersComponent {
     }
     const sortedData = this.users.filter(user => user.fullName.toLowerCase().indexOf(this.nameOrLastName.toLowerCase()) > -1)
     this.contentToShow = sortedData;
+  }
+
+  // Users whose membership expires in 3 days
+  aboutToExpire(){
+    const sortedData = this.users.filter(user => user.datesToShow.daysLeft <= 3 && user.datesToShow.daysLeft >= 0)
+    this.contentToShow = sortedData;
+  }
+
+  // Users whose membership expires in 3 days
+  expiredMemberships(){
+    const sortedData = this.users.filter(user => user.datesToShow.daysLeft <= 0)
+    this.contentToShow = sortedData;
+  }
+
+  // toggle tools menu
+  toggleToolsMenu(){
+    const sideFilters = document.querySelector('.az-btn')!;
+
+    sideFilters.classList.toggle('active');
   }
 }

@@ -11,27 +11,32 @@
   top: 0;
   width: 100%;
 
-  background: linear-gradient(to right, #0f202789, #203a438f, #2c536499), url('../../../assets/store2.jpg');
+  background: #222;
   background-size: cover;
   min-height: 100vh;
 
 }
 
 .filters{
-  top: 20%;
+  top: 170px;
   left: 0;
-  transform: translateX(-90%);
+  transform: translateX(-100%);
   transition: all .4s ease;
   background: linear-gradient(to top, #222222, #222222c6);
   box-shadow: 0 0 25px rgba(0, 0, 0, .7);
   border: 2px dotted green;
 }
-.filters:hover{
+.filters.active{
   transform: translateX(0);
 }
 
-.table-title{
-  background: linear-gradient(to top, #222222cf, #22222241)
+table{
+  background: linear-gradient(to left, #ece9e6, #fffffff6);
+}
+
+.table-title th{
+  background: #222;
+  border: 1px solid white;
 }
 
 .data{
@@ -67,10 +72,16 @@ input{
   outline: none;
 }
 
+.tools-btn{
+  position: absolute;
+  left: 10px;
+  top: 120px;
+}
+
 
 @media screen and (min-width: 1040px){
   .filters{
-    top: 20%;
+    top: 30%;
     left: 0;
     transform: translateX(0);
     transition: all .4s ease;
@@ -82,5 +93,9 @@ input{
 
   i{
     font-size: 20px;
+  }
+
+  .tools-btn{
+    display: none;
   }
 }

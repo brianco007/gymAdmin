@@ -3,11 +3,17 @@
  
   <section class="d-flex flex-column details-form p-4 rounded ">
     <h2>Actualizar Información </h2>
-    <label for="name" class="fs-6">Nombre y Apellido</label>
+    <label for="name" class="fs-6">Nombre y Apellido<span class="text-danger h5"> *</span></label>
     <input type="text" id="name" placeholder="John Doe" class="p-1 fs-6" required  [(ngModel)]="userData.fullName">
 
-    <label for="cc" class="fs-6">CC o TI</label>
+    <label for="cc" class="fs-6">CC o TI <span class="text-danger h5"> *</span></label>
     <input type="text" id="cc" placeholder="1085313559" class="p-1"  [(ngModel)]="userData.idNumber">
+
+    <label for="date" class="fs-6">Fecha de Inicio <span class="text-danger h5"> *</span></label>
+    <input type="date" id="date" placeholder="johndoe@hotmail.com" class="p-1" [(ngModel)]="userData.startDate">
+
+    <label for="date2" class="fs-6">Fecha de Fin <span class="text-danger h5"> *</span></label>
+    <input type="date" id="date2" placeholder="johndoe@hotmail.com" class="p-1" [(ngModel)]="userData.endDate">
 
     <label for="phone" class="fs-6">Celular </label>
     <input type="text" id="phone" placeholder="317 325 3124" class="p-1" [(ngModel)]="userData.phone">
@@ -15,8 +21,8 @@
     <label for="email" class="fs-6">Correo electrónico </label>
     <input type="text" id="email" placeholder="johndoe@hotmail.com" class="p-1" [(ngModel)]="userData.email">
 
-    <label for="date" class="fs-6">Fecha de Inicio </label>
-    <input type="date" id="date" placeholder="johndoe@hotmail.com" class="p-1" [(ngModel)]="userData.dateStart">
+    <label for="notes">Apuntes </label>
+    <textarea id="notes" id="email" [(ngModel)]="userData.notes"  class="p-1"  cols="30" rows="3" ></textarea>
   </section>
 
   <div>
