@@ -3,8 +3,15 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { StoreModule, provideState, provideStore } from '@ngrx/store';
+import { NotificationsReducer } from './ngrx-notifications/notifications.reducer';
+
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient()]
+  providers: [provideRouter(routes), 
+    provideHttpClient(),
+    provideStore(),
+    provideState({name: 'notifications', reducer: NotificationsReducer})
+  ]
 
 };

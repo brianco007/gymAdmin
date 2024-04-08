@@ -1,0 +1,21 @@
+<div class="flex flex-column" >
+  <div class="position-relative" style="cursor: pointer; display: inline;" (click)="toggleVisibility()">
+    <i class="bi bi-bell-fill" style="color: gold; font-size: 1.5rem; " [ngClass]="{'new': true}"></i>
+
+    @if(notifications.length){
+      <span class="text-light bg-danger  rounded  position-absolute d-flex align-items-center justify-content-center px-1" > {{ notifications.length }} </span>
+    }
+  </div>
+
+  <div class="bg-light mt-2 p-1 px-3 rounded container" [ngClass]="{'visible': visible}">
+    <h6 >Usuarios por notificar: </h6>
+    <ul>
+      <li *ngFor="let notification of notifications">
+      {{ notification.name }}
+
+      <a [href]="'https://wa.me/57'+notification.whatsApp+'?text=¡Hola, ' + notification.name + '! Pasamos a recordarte que tu mensualidad en el gimnasio acaba de vencer.'" class="text-decoration-none"
+      target="_blank" (click)="deleteNotification(notification.id)"><i class="bi bi-whatsapp text-success"></i></a>
+      </li>
+      </ul>
+  </div>
+</div>
