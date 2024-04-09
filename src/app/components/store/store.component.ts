@@ -265,4 +265,11 @@ export class StoreComponent {
       width: '20rem'
     })
   }
+
+  // toggle tools menu
+  toggleToolsMenu(){
+    const sideFilters = document.querySelector('.filters')!;
+
+    sideFilters.classList.toggle('active');
+  }
 }

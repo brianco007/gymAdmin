@@ -94,7 +94,7 @@ export class ClientsComponent {
       const userId = this.clientForm.value.userId; // get value from FORM
       const filteredData = res.filter((user: any) => user.userId === userId)
       this.ticketInfo = filteredData
-
+      console.log(this.ticketInfo)
       if(this.ticketInfo.length){       
         this.gymId = this.ticketInfo[0].createdBy;
         this.showGymName()

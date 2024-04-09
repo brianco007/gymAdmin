@@ -27,11 +27,12 @@ export class CreateComponent {
   userData: UserModel = {
     fullName: "",
     idNumber: "",
+    startDate: "",
+    endDate: "",
+    createdBy: this.assignOwner(),  
     phone: "",
     email: "",
-    dateStart: "",
     notes: "", 
-    createdBy: this.assignOwner()  
   }
 
   userInfo: any;
@@ -39,11 +40,11 @@ export class CreateComponent {
   router = inject(Router);
   createUser(){
     this.gymUsersService.createUser(this.userData).subscribe((res: any)=>{
-      if(this.userData.fullName && this.userData.idNumber && this.userData.dateStart){
+      if(this.userData.fullName && this.userData.idNumber && this.userData.startDate && this.userData.endDate){
         this.userInfo = res;
         this.router.navigate(["/users"])
       } else {
-        this.popupMessage = 'Nombre, identificación y fecha de inicio son campos obligatorios.'
+        this.popupMessage = 'Nombre, identificación y las fechas son campos obligatorios.'
       }
     })
 

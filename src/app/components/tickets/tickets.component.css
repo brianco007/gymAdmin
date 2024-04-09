@@ -11,9 +11,11 @@
   position: absolute;
   top: 0;
   width: 100%;
-  background: linear-gradient(to right, #0f202789, #203a438f, #2c536499), url('../../../assets/tickets.jpg');
+  background: linear-gradient(to top, #222222cf, #22222241) , url('../../../assets/actions.jpg');
+
   background-size: cover;
   min-height: 110vh;
+  margin-top: 50px;
 }
 
 .totalUsers{
@@ -22,8 +24,13 @@
   font-size: .7rem;
 }
 
-.table-titles{
-  background: linear-gradient(to top, #222222cf, #22222241)
+table{
+  background: linear-gradient(to left, #ece9e6, #fffffff6);
+}
+
+.table-titles th{
+  background: #222;
+  border: 1px solid white;
 }
 
 .data{
@@ -59,15 +66,15 @@ table{
 
 
 .filters{
-  top: 20%;
+  top: 170px;
   left: 0;
-  transform: translateX(-93%);
+  transform: translateX(-100%);
   transition: all .4s ease;
   background: linear-gradient(to top, #222222, #222222ed);
   box-shadow: 0 0 25px rgba(0, 0, 0, .7);
   border: 2px dotted orange;
 }
-.filters:hover{
+.filters.active{
   transform: translateX(0);
 }
 
@@ -83,11 +90,18 @@ input{
 .top-filters{
   background: linear-gradient(to top, #222222, #222222a4);
   max-width: 550px;
+  border: 3px solid orange;
 }
 
-@media screen and (min-width: 1200px){
+.tools-btn{
+  position: absolute;
+  left: 10px;
+  top: 120px;
+}
+
+@media screen and (min-width: 1040px){
   .filters{
-    top: 20%;
+    top: 14%;
     left: 0;
     transform: translateX(0);
     transition: all .4s ease;
@@ -95,5 +109,13 @@ input{
     box-shadow: 0 0 25px rgba(0, 0, 0, .7);
     border: 2px dotted orange;
     cursor: pointer;
+  }
+
+  .action-icons i{
+    font-size: 20px;
+  }
+
+  .tools-btn{
+    display: none;
   }
 }

@@ -16,17 +16,19 @@ export class EditComponent {
   gymUsersService = inject(GymUsersService);
   userData: UserModel = {
     fullName: "",
+    startDate: "",
+    endDate: "",
     idNumber: "",
+    createdBy: "" ,
     phone: "",
     email: "",
-    dateStart: "",
-    createdBy: "" 
+    notes: ""
   }
 
   router = inject(Router)
   editUser(id: string){
     this.gymUsersService.editUser(id, this.userData).subscribe((res: any)=>{
-      this.router.navigate(["/users"])
+      this.router.navigate(["/users"]);
     })
   }
 

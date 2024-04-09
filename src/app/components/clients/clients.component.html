@@ -11,7 +11,7 @@
     class="d-flex align-items-center"
   >
     <input
-      type="search"
+      type="string"
       placeholder="Número de CC o TI"
       class="mt-2 p-2"
       formControlName="userId"
@@ -35,15 +35,15 @@
 
     <h6 class="text-center text-danger">Tus Datos</h6>
     <p class="text-light">
-      <span class="text-danger">Nombre: </span> {{ data.fullName }}
+      <span class="text-danger">Nombre: </span> {{ allUsers[0].fullName }}
     </p>
     @if(data.phone){
     <p class="text-light">
-      <span class="text-danger">Celular: </span> {{ data.phone }}
+      <span class="text-danger">Celular: </span> {{ allUsers[0].phone }}
     </p>
     } @if(data.phone){
     <p class="text-light">
-      <span class="text-danger">Correo: </span> {{ data.email }}
+      <span class="text-danger">Correo: </span> {{ allUsers[0].email }}
     </p>
     }
 
@@ -51,18 +51,18 @@
 
     <h6 class="text-center text-danger">Tu Mensualidad</h6>
     <p class="text-light">
-      <span class="text-danger">Inicia: </span> {{ start }}
+      <span class="text-danger">Inicia: </span> {{ allUsers[0].datesToShow.start }}
     </p>
     <p class="text-light">
-      <span class="text-danger">Expira: </span> {{ end }}
+      <span class="text-danger">Expira: </span> {{ allUsers[0].datesToShow.end }}
     </p>
-    @if(daysLeft < 0){
+    @if(allUsers[0].datesToShow.daysLeft < 0){
     <p class="text-light">
-      <span class="text-danger">Expiró hace: </span>{{ daysLeft * -1 }} días.
+      <span class="text-danger">Expiró hace: </span>{{ allUsers[0].datesToShow.daysLeft * -1 }} días.
     </p>
     } @else {
     <p class="text-light">
-      <span class="text-danger">Tienes: </span>{{ daysLeft }} días
+      <span class="text-danger">Tienes: </span>{{ allUsers[0].datesToShow.daysLeft }} días
     </p>
     }
   </section>

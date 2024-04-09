@@ -19,20 +19,20 @@
         <td class="fs-6 p-2"><i class="bi bi-envelope"></i> {{ userInfo?.email }} </td>
       </tr>
       <tr class="data text-dark d-flex border">
-        <td class="fs-6 p-2"><i class="bi bi-calendar-check"></i> {{ dateStart }} </td>
+        <td class="fs-6 p-2"><i class="bi bi-calendar-check"></i> {{ userInfo?.datesToShow.start }} </td>
       </tr>
       <tr class="data text-dark d-flex border">
-        <td class="fs-6 p-2"><i class="bi bi-calendar-x"></i> {{ dateEnd }} </td>
+        <td class="fs-6 p-2"><i class="bi bi-calendar-x"></i> {{ userInfo?.datesToShow.end }} </td>
       </tr>
       <tr class="data text-dark d-flex border">
         <td class="fs-6 p-2"><i class="bi bi-journals"></i> {{ userInfo?.notes }} </td>
       </tr>
       <tr [className]="daysLeftColor(daysLeft)">
         <td class="fs-6 p-2" > @if(daysLeft <= 0){
-          Expiró hace {{ daysLeft*-1 }} 
+          Mensualidad Expirada 
         }  @else {
-          Tiene {{ daysLeft }} 
-        } días</td>
+          Mensualidad Activa 
+        } 
       </tr>
     </table>
   </section>
