@@ -8,7 +8,7 @@ export interface UserModel {
   phone: string;
   email?: string;
   notes?: string;
-  _id: string
+  _id?: string
 }
 
 

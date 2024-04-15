@@ -27,8 +27,7 @@ export class EditComponent {
       daysLeft: 0,
       end: '',
       start: ''
-    },
-    _id: ''
+    }
   }
 
   router = inject(Router)

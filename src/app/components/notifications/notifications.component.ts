@@ -27,11 +27,11 @@ export class NotificationsComponent {
 
   ngOnInit(){
     this.store.pipe(select('listadoDeUsuarios')).subscribe((users: UserModel[])=>{
-      const filteredUsers = users.filter(user =>  user.datesToShow.daysLeft <= 0)
+      const filteredUsers = users.filter(user =>  user.datesToShow.daysLeft === 0)
 
       this.notifications = filteredUsers.map(user => {
         const object = {
-          id:user._id,
+          id:user.idNumber,
           name: user.fullName,
           whatsApp: user.phone
         }

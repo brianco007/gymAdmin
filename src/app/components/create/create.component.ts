@@ -37,8 +37,7 @@ export class CreateComponent {
       daysLeft: 0,
       end: '',
       start: ''
-    },
-    _id: ''
+    }
   }
 
   userInfo: any;
@@ -52,6 +51,8 @@ export class CreateComponent {
       } else {
         this.popupMessage = 'Nombre, identificación y las fechas son campos obligatorios.'
       }
+      console.log(this.userData)
+      console.log(this.userInfo)
     })
 
   }

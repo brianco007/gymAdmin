@@ -55,20 +55,10 @@ export class TicketsComponent {
       });
       this.ticketsData = filteredData;
       this.contentToShow = filteredData.reverse();
-
-      // show CURRENT Month data
-      const currentMonthIndex = new Date().getMonth()
-      const formatedMonth = this.months[currentMonthIndex]
-      
-      const sortedByCurrentMonth = this.contentToShow.filter((ticket: any)=>{
-        const ticketDate = ticket.startDate.split(',')[0].slice(3)
-        return ticketDate === formatedMonth
-      })
-      this.contentToShow = sortedByCurrentMonth;
+  
       
     });
-
-    
+ 
   }
 
   ngOnInit() {
