@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import Swal from 'sweetalert2'
 
 
 @Component({
@@ -12,5 +11,5 @@ import Swal from 'sweetalert2'
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  name = 'Brian Córdoba';
+  title = 'Brian Córdoba';
 }

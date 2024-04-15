@@ -3,7 +3,7 @@
   top: 0;
   width: 100%;
 
-  background: #222;
+  background: linear-gradient(to top, #222222cf, #22222241) , url('../../../assets/actions.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

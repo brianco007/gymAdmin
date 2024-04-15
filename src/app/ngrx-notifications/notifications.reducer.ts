@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { addNotification, deleteNotification } from './notifications.actions';
 import { Notification } from './notifications.model';
 
+
 const initState: Notification[] = [];
 
 export const NotificationsReducer = createReducer(
@@ -23,3 +24,4 @@ export const NotificationsReducer = createReducer(
     return state.filter(item => item.id !== notificationId)
   })
 )
+

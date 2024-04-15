@@ -14,10 +14,10 @@ export class GymUsersService {
 
   // GET REQUESTS
   getUsers(){
-    return this.httpClient.get(this.API_URL)
+    return this.httpClient.get<UserModel[]>(this.API_URL)
   }
   showOneUser(id: string){
-    return this.httpClient.get(`${this.API_URL}${id}`)
+    return this.httpClient.get<UserModel>(`${this.API_URL}${id}`)
   }
 
   // CREATE USER
