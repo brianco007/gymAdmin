@@ -1,17 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { GymUsersService } from '../../services/gym-users.service';
-import { RouterLink, Router, ActivatedRoute } from '@angular/router';
+import { RouterLink,  ActivatedRoute } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt'; // decode token
 import { FormsModule } from '@angular/forms';
 import { LoginServiceService } from '../../services/login-service.service';
 import { DetailsComponent } from '../details/details.component';
 import { NotificationsComponent } from '../notifications/notifications.component';
+import { UserModel } from '../../interfaces/user-model';
 
-// ngrx
-import { Store } from '@ngrx/store';
+// NGRX 
+import { Store, select } from '@ngrx/store';
 import { AppState } from '../../ngrx-notifications/app.state';
-import * as NotificationActions from '../../ngrx-notifications/notifications.actions';
-import { Notification } from '../../ngrx-notifications/notifications.model';
+import * as UsersActions from '../../ngrx-notifications/users.actions';
+
 
 const jwtHelperService = new JwtHelperService();
 
@@ -23,12 +24,10 @@ const jwtHelperService = new JwtHelperService();
   styleUrl: './users.component.css',
 })
 export class UsersComponent {
-  constructor(private store: Store) {}
 
-  addNotification(id: string, name: string, whatsApp: string){
-    const notification: Notification = {id: id, name: name, whatsApp: whatsApp}
-    this.store.dispatch(NotificationActions.addNotification({notification}))
-  }
+  constructor (
+    private store: Store<AppState>
+  ) {}
 
   gymUsersService = inject(GymUsersService);
   loginService = inject(LoginServiceService);
@@ -49,46 +48,33 @@ export class UsersComponent {
   ];
 
   // Show users
-  users: any[] = [];
-  contentToShow: any[] = [];
+  ngrxUsers: UserModel[] = [];
+  contentToShow: UserModel[] = [];
   showAllUsers() {
-    this.gymUsersService.getUsers().subscribe((res: any) => {
-      this.users = res.reverse();
+    this.gymUsersService.getUsers().subscribe(users => {
+      //NGRX
+      // updating my state with info from the api
+      this.store.dispatch(UsersActions.fillInfo({users}));
+      // using the info in my state here
+      this.store.pipe(select('listadoDeUsuarios')).subscribe((users: UserModel[])=>{
+        this.ngrxUsers = users
+      });
       //show the name of the gym on top
       const tokenFromDom: any = localStorage.getItem('token');
       this.gymName = jwtHelperService
         .decodeToken(tokenFromDom)
         .gymName.toUpperCase();
 
-      //show ONLY your users
-      const filteredData = this.users.filter((user) => {
+      //show ONLY one GYM Users
+      const filteredData = this.ngrxUsers.filter((user) => {
         const tokenFromDom: any = localStorage.getItem('token');
         const owner = jwtHelperService.decodeToken(tokenFromDom).id;
         return user.createdBy === owner;
       });
       this.contentToShow = filteredData;
-      this.users = filteredData;
-
-      // // show only current month data
-      // const currentMonthIndex = new Date().getMonth();
-      // const currentMonth = this.months[currentMonthIndex];
-      // const sortedByCurrentMonth = this.users.filter(user=>{
-      //   const date = user.datesToShow.start;
-      //   const slicedDate = date.slice(2, 6).trim()
-      //   return slicedDate === currentMonth;
-      // })
-      // this.contentToShow = sortedByCurrentMonth;
-
-      const respuesta = localStorage.getItem('terminado')
-      if(respuesta !== 'si'){
-        const sortedData = this.users.filter(
-          (user) => user.datesToShow.daysLeft === 0 
-        );
-        sortedData.map(user => {
-          this.addNotification(user._id, user.fullName, user.phone)
-        })
-      }
+      this.ngrxUsers = filteredData;
     });
+
   }
 
   // Token validation
@@ -110,6 +96,7 @@ export class UsersComponent {
     } 
   }
 
+
   //FILTERS
   aToZ() {
     const sortedNames = this.contentToShow.sort((a, b) => {
@@ -118,6 +105,7 @@ export class UsersComponent {
       return 0;
     });
     this.contentToShow = sortedNames;
+    console.log(this.ngrxUsers)
   }
 
   zToA() {
@@ -131,7 +119,7 @@ export class UsersComponent {
 
   selectedMonth: string = '';
   byMonth() {
-    const filteredData = this.users.filter(
+    const filteredData = this.ngrxUsers.filter(
       (user) => user.datesToShow.start.slice(3, 6) === this.selectedMonth
     );
     this.contentToShow = filteredData;
@@ -142,7 +130,7 @@ export class UsersComponent {
     if (!this.wantedId) {
       this.showAllUsers();
     }
-    const sortedData = this.users.filter(
+    const sortedData = this.ngrxUsers.filter(
       (user) => user.idNumber.indexOf(this.wantedId) > -1
     );
     this.contentToShow = sortedData;
@@ -153,7 +141,7 @@ export class UsersComponent {
     if (!this.nameOrLastName) {
       this.showAllUsers();
     }
-    const sortedData = this.users.filter(
+    const sortedData = this.ngrxUsers.filter(
       (user) =>
         user.fullName.toLowerCase().indexOf(this.nameOrLastName.toLowerCase()) >
         -1
@@ -163,7 +151,7 @@ export class UsersComponent {
 
   // Users whose membership expires in 3 days
   aboutToExpire() {
-    const sortedData = this.users.filter(
+    const sortedData = this.ngrxUsers.filter(
       (user) => user.datesToShow.daysLeft <= 3 && user.datesToShow.daysLeft >= 0
     );
     this.contentToShow = sortedData;
@@ -171,7 +159,7 @@ export class UsersComponent {
 
   // Users whose membership expires in 3 days
   expiredMemberships() {
-    const sortedData = this.users.filter(
+    const sortedData = this.ngrxUsers.filter(
       (user) => user.datesToShow.daysLeft <= 0
     );
     this.contentToShow = sortedData;

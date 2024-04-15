@@ -33,6 +33,12 @@ export class CreateComponent {
     phone: "",
     email: "",
     notes: "", 
+    datesToShow: {
+      daysLeft: 0,
+      end: '',
+      start: ''
+    },
+    _id: ''
   }
 
   userInfo: any;

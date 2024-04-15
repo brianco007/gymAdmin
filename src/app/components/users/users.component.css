@@ -104,6 +104,7 @@ table{
 
 .bell{
   right: 3%;
+  position: absolute;
 }
 
 @media screen and (min-width: 1040px){

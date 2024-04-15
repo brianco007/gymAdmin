@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Notification } from '../../ngrx-notifications/notifications.model';
 import { AppState } from '../../ngrx-notifications/app.state';
-import { deleteNotification } from '../../ngrx-notifications/notifications.actions';
+import { addNotification, deleteNotification } from '../../ngrx-notifications/notifications.actions';
+import { UserModel } from '../../interfaces/user-model';
 
 @Component({
   selector: 'app-notifications',
@@ -21,10 +22,24 @@ export class NotificationsComponent {
   }
 
   // Definimos el observable:
-  notifications: Notification[] = []; // Matriz local para almacenar las tareas
+  notifications: Notification[] = []; 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(){
+    this.store.pipe(select('listadoDeUsuarios')).subscribe((users: UserModel[])=>{
+      const filteredUsers = users.filter(user =>  user.datesToShow.daysLeft <= 0)
+
+      this.notifications = filteredUsers.map(user => {
+        const object = {
+          id:user._id,
+          name: user.fullName,
+          whatsApp: user.phone
+        }
+
+        return object
+      })
+    });
+
     this.store.pipe(select('notifications')).subscribe((notifications: Notification[])=>{
       this.notifications = notifications;
     })

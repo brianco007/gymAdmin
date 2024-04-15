@@ -11,3 +11,4 @@ export const deleteNotification = createAction(
   "[Notification Component] Delete notification",
   props<{notificationId: string}>()
 )
+

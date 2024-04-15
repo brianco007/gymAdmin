@@ -22,7 +22,13 @@ export class EditComponent {
     createdBy: "" ,
     phone: "",
     email: "",
-    notes: ""
+    notes: "",
+    datesToShow: {
+      daysLeft: 0,
+      end: '',
+      start: ''
+    },
+    _id: ''
   }
 
   router = inject(Router)
