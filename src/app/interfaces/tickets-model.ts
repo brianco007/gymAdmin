@@ -7,4 +7,5 @@ export interface ticketsModel {
   createdBy: string;
   phone?: string;
   email?: string;
+  datesToShow?: {daysLeft: number, start: string, end: string};
 }

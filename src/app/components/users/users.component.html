@@ -57,7 +57,7 @@
     @if(!contentToShow.length){ <p class=" text-dark p-1">Sin usuarios.</p> }
 
 
-    @for(user of contentToShow; track user._id){
+    @for(user of contentToShow; track user.fullName){
     <tr class="data text-dark border border-dark">
       <td class="border border-dark p-1 px-md-3">
         {{ user.fullName }}

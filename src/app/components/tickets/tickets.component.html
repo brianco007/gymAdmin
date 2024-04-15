@@ -156,7 +156,7 @@
     @for(user of contentToShow; track user._id){
     <tr class="data text-dark border border-dark">
       <td class="border border-dark p-2 px-md-3">{{ user.fullName }}</td>
-      <td class="border border-dark p-2 px-md-3">{{ user.endDate}}</td>
+      <td class="border border-dark p-2 px-md-3">{{ user.datesToShow.end}}</td>
       <td class="border border-dark p-2 px-md-3">{{ user.numberOfDays }}</td>
 
       <!-- CRUD actions -->
@@ -197,11 +197,11 @@
                   <strong>Identificación: </strong> {{ detailsInfo.userId }}
                 </p>
                 <p>
-                  <strong>Fecha de inicio: </strong> {{ detailsInfo.startDate }}
+                  <strong>Fecha de inicio: </strong> {{ detailsInfo.datesToShow.start }}
                 </p>
                 <p>
                   <strong>Fecha de expiración: </strong>
-                  {{ detailsInfo.endDate }}
+                  {{ detailsInfo.datesToShow.end }}
                 </p>
                 <p>
                   <strong>Días totales de tiquetera: </strong>
