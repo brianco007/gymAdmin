@@ -125,6 +125,7 @@ export class TicketsComponent {
   seeDetails(id: string) {
     this.ticketsService.showOneTicket(id).subscribe((res: any) => {
       this.detailsInfo = res;
+      console.log(res)
       // For the DELETE Fn
       this.userToDeleteId = res._id;
       this.userNameToDelete = res.fullName;
